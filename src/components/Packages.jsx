@@ -1,21 +1,40 @@
-import React from "react";
-import { CheckIcon } from "@heroicons/react/20/solid";
+import React, { useState } from "react";
+import { CheckIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
 
-const PricingCard = ({ tier, price, features }) => {
+const PricingCard = ({ tier, price, features, popular }) => {
   return (
-    <div className="flex flex-col p-6 mx-4 max-w-lg bg-white rounded-lg border border-gray-200 shadow-lg">
-      <h3 className="text-2xl font-bold text-blue-600">{tier}</h3>
-      <div className="mt-4 text-5xl font-extrabold">${price}</div>
-      <p className="mt-1 text-lg text-gray-500">+HST</p>
-      <ul className="mt-6 space-y-4">
+    <div
+      className={`flex flex-col p-8 mx-4 max-w-lg bg-white rounded-xl border ${
+        popular
+          ? "border-blue-600 shadow-xl scale-105"
+          : "border-gray-200 shadow-lg"
+      }`}
+    >
+      {popular && (
+        <div className="px-3 py-1 text-sm text-white bg-blue-600 rounded-full w-fit mb-4">
+          Most Popular
+        </div>
+      )}
+      <h3 className="text-2xl font-bold text-gray-900">{tier}</h3>
+      <div className="mt-4 flex items-baseline">
+        <span className="text-5xl font-extrabold text-gray-900">${price}</span>
+        <span className="ml-1 text-xl text-gray-500">+HST</span>
+      </div>
+      <ul className="mt-8 space-y-4">
         {features.map((feature, index) => (
-          <li key={index} className="flex">
-            <CheckIcon className="flex-shrink-0 w-6 h-6 text-blue-500" />
-            <span className="ml-3 text-gray-500">{feature}</span>
+          <li key={index} className="flex items-start">
+            <CheckIcon className="flex-shrink-0 w-5 h-5 text-blue-500" />
+            <span className="ml-3 text-gray-600">{feature}</span>
           </li>
         ))}
       </ul>
-      <button className="mt-8 w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors">
+      <button
+        className={`mt-8 w-full py-3 px-4 rounded-md text-base font-medium transition-colors duration-200 ${
+          popular
+            ? "bg-blue-600 text-white hover:bg-blue-700"
+            : "bg-gray-100 text-gray-900 hover:bg-gray-200"
+        }`}
+      >
         Book Now
       </button>
     </div>
@@ -25,12 +44,13 @@ const PricingCard = ({ tier, price, features }) => {
 const Packages = () => {
   const packages = [
     {
-      tier: "Base Package",
+      tier: "Basic Package",
       price: 599,
       features: [
         "20 hours online training",
         "10 hours in-car training",
         "Flexible scheduling",
+        "Practice tests included",
       ],
     },
     {
@@ -39,9 +59,12 @@ const Packages = () => {
       features: [
         "20 hours online training",
         "10 hours in-car training",
-        "1 hour road test included",
+        "1 hour road test preparation",
         "Flexible scheduling",
+        "Practice tests included",
+        "Priority booking",
       ],
+      popular: true,
     },
     {
       tier: "Ultimate Package",
@@ -49,21 +72,24 @@ const Packages = () => {
       features: [
         "20 hours online training",
         "10 hours in-car training",
-        "2 hours road test included",
+        "2 hours road test preparation",
         "Flexible scheduling",
+        "Practice tests included",
+        "Priority booking",
+        "Free refresher lesson",
       ],
     },
   ];
 
   return (
-    <div className="py-12 bg-gray-50">
+    <div className="py-16 bg-gray-50" id="packages">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            Choose Your Package
+            Learning Packages
           </h2>
           <p className="mt-4 text-xl text-gray-600">
-            Select the package that best fits your needs
+            Choose the perfect package for your learning journey
           </p>
         </div>
 
@@ -73,14 +99,32 @@ const Packages = () => {
           ))}
         </div>
 
-        <div className="mt-12 space-y-4 text-center">
-          <div className="p-6 bg-white rounded-lg border border-gray-200 shadow-lg">
-            <h3 className="text-xl font-bold text-blue-600">
-              Additional Services
-            </h3>
-            <div className="mt-4 space-y-2">
-              <p>Hourly Rate: $50/hour +HST</p>
-              <p>Out of Town Road Tests: $350 +HST</p>
+        <div className="mt-16 p-8 bg-white rounded-xl shadow-lg">
+          <h3 className="text-2xl font-bold text-gray-900 text-center">
+            Additional Services
+          </h3>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+              <div className="flex-shrink-0">
+                <ClockIcon className="h-6 w-6 text-blue-600" />
+              </div>
+              <div className="ml-4">
+                <h4 className="text-lg font-medium text-gray-900">
+                  Hourly Rate
+                </h4>
+                <p className="text-gray-600">$50/hour +HST</p>
+              </div>
+            </div>
+            <div className="flex items-center p-4 bg-gray-50 rounded-lg">
+              <div className="flex-shrink-0">
+                <MapPinIcon className="h-6 w-6 text-blue-600" />
+              </div>
+              <div className="ml-4">
+                <h4 className="text-lg font-medium text-gray-900">
+                  Out of Town Tests
+                </h4>
+                <p className="text-gray-600">$350 +HST</p>
+              </div>
             </div>
           </div>
         </div>
