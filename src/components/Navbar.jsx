@@ -18,9 +18,9 @@ const Navbar = () => {
           <div className="flex-shrink-0 flex items-center">
             <Link to="/" className="flex items-center">
               <img
-                src="/logo.png"
+                src="/src/images/logo.png"
                 alt="London Elite Driving Academy"
-                style={{ height: "400px", width: "auto", marginLeft: "-60px" }}
+                style={{ height: "450px", width: "auto", marginLeft: "-60px" }}
               />
             </Link>
           </div>
