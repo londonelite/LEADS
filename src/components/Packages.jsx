@@ -1,7 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { CheckIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
 const PricingCard = ({ tier, price, features, popular }) => {
+  const navigate = useNavigate();
+
+  const handleBookNow = () => {
+    navigate(`/booking?package=${encodeURIComponent(tier)}`);
+  };
+
   return (
     <div
       className={`flex flex-col p-8 mx-4 max-w-lg bg-white rounded-xl border ${
@@ -29,6 +36,7 @@ const PricingCard = ({ tier, price, features, popular }) => {
         ))}
       </ul>
       <button
+        onClick={handleBookNow}
         className={`mt-8 w-full py-3 px-4 rounded-md text-base font-medium transition-colors duration-200 ${
           popular
             ? "bg-blue-600 text-white hover:bg-blue-700"

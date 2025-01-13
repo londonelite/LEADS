@@ -1,19 +1,36 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import emailjs from "@emailjs/browser";
+import { useSearchParams } from "react-router-dom";
 
 const Booking = () => {
+  const [searchParams] = useSearchParams();
+
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     preferredDate: "",
     preferredTime: "",
-    lessonType: "standard",
+    lessonType: "Basic Package",
     message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+
+  useEffect(() => {
+    // Scroll to top when component mounts
+    window.scrollTo(0, 0);
+
+    // Set the lesson type based on URL parameter
+    const packageFromUrl = searchParams.get("package");
+    if (packageFromUrl) {
+      setFormData((prev) => ({
+        ...prev,
+        lessonType: packageFromUrl,
+      }));
+    }
+  }, [searchParams]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -23,25 +40,60 @@ const Booking = () => {
     }));
   };
 
+  const formatLessonType = (type) => {
+    const types = {
+      "Basic Package": "Basic Package ($599 +HST)",
+      "Premium Package": "Premium Package ($720 +HST)",
+      "Ultimate Package": "Ultimate Package ($760 +HST)",
+      Hourly: "Hourly Rate ($50/hour +HST)",
+      "Out of Town": "Out of Town Test ($350 +HST)",
+    };
+    return types[type] || type;
+  };
+
+  const formatTime = (time) => {
+    const times = {
+      morning: "Morning (9AM - 12PM)",
+      afternoon: "Afternoon (12PM - 4PM)",
+      evening: "Evening (4PM - 7PM)",
+    };
+    return times[time] || time;
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
     setSubmitStatus("pending");
 
-    // Prepare email template parameters
+    const formattedDate = new Date(formData.preferredDate).toLocaleDateString(
+      "en-US",
+      {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      }
+    );
+
+    const formattedMessage = `
+Full Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+Preferred Date: ${formattedDate}
+Preferred Time: ${formatTime(formData.preferredTime)}
+Package Selected: ${formatLessonType(formData.lessonType)}
+
+Additional Notes:
+${formData.message || "No additional notes provided"}`;
+
     const templateParams = {
       to_email: "omarhossain1610@gmail.com",
       from_name: formData.name,
       from_email: formData.email,
-      phone: formData.phone,
-      preferred_date: formData.preferredDate,
-      preferred_time: formData.preferredTime,
-      lesson_type: formData.lessonType,
-      message: formData.message,
+      booking_details: formattedMessage,
     };
 
     try {
-      // Replace these with your actual EmailJS service ID, template ID, and public key
       await emailjs.send(
         "service_sktyzkg",
         "template_cmcqope",
@@ -50,14 +102,13 @@ const Booking = () => {
       );
 
       setSubmitStatus("success");
-      // Clear form after successful submission
       setFormData({
         name: "",
         email: "",
         phone: "",
         preferredDate: "",
         preferredTime: "",
-        lessonType: "standard",
+        lessonType: "Basic Package",
         message: "",
       });
     } catch (error) {
@@ -147,6 +198,7 @@ const Booking = () => {
                 required
                 value={formData.preferredDate}
                 onChange={handleChange}
+                min={new Date().toISOString().split("T")[0]}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               />
             </div>
@@ -178,7 +230,7 @@ const Booking = () => {
                 htmlFor="lessonType"
                 className="block text-sm font-medium text-gray-700"
               >
-                Lesson Type
+                Package Type
               </label>
               <select
                 name="lessonType"
@@ -188,9 +240,17 @@ const Booking = () => {
                 onChange={handleChange}
                 className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
               >
-                <option value="standard">Standard Lesson (1 hour)</option>
-                <option value="intensive">Intensive Course</option>
-                <option value="test">Test Preparation</option>
+                <option value="Basic Package">Basic Package ($599 +HST)</option>
+                <option value="Premium Package">
+                  Premium Package ($720 +HST)
+                </option>
+                <option value="Ultimate Package">
+                  Ultimate Package ($760 +HST)
+                </option>
+                <option value="Hourly">Hourly Rate ($50/hour +HST)</option>
+                <option value="Out of Town">
+                  Out of Town Test ($350 +HST)
+                </option>
               </select>
             </div>
 
