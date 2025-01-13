@@ -1,9 +1,5 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React from "react";
 import {
-  Bars3Icon,
-  XMarkIcon,
-  CheckIcon,
   PhoneIcon,
   EnvelopeIcon,
   MapPinIcon,
@@ -11,22 +7,52 @@ import {
 } from "@heroicons/react/24/outline";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const businessHours = [
+    { day: "Monday", hours: "8:00 AM - 6:00 PM" },
+    { day: "Tuesday", hours: "8:00 AM - 6:00 PM" },
+    { day: "Wednesday", hours: "8:00 AM - 6:00 PM" },
+    { day: "Thursday", hours: "8:00 AM - 6:00 PM" },
+    { day: "Friday", hours: "8:00 AM - 6:00 PM" },
+    { day: "Saturday", hours: "8:00 AM - 3:00 PM" },
+    { day: "Sunday", hours: "8:00 AM - 3:00 PM" },
+  ];
+
   return (
-    <footer className="bg-gray-900">
-      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div>
-            <h3 className="text-white text-lg font-semibold">
-              London Elite Driving Academy
-            </h3>
-            <p className="mt-4 text-gray-400">
-              Professional driving instruction serving London and surrounding
-              areas
+    <footer className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+      {/* Top Wave SVG */}
+      <div className="w-full">
+        <svg
+          className="w-full h-12 fill-current text-white"
+          viewBox="0 0 1440 48"
+          preserveAspectRatio="none"
+        >
+          <path d="M0,48 C480,32 960,32 1440,48 L1440,0 L0,0 Z" />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+          {/* Company Info */}
+          <div className="space-y-6">
+            <div className="space-y-2">
+              <h3 className="text-white text-3xl font-bold tracking-tight">
+                London Elite
+              </h3>
+              <h4 className="text-gray-300 text-lg font-medium italic">
+                Driving Academy
+              </h4>
+            </div>
+            <p className="text-gray-400 leading-relaxed">
+              Your journey to becoming a confident and skilled driver starts
+              here. Professional driving instruction serving London and
+              surrounding areas since 2025.
             </p>
-            <div className="mt-6 flex space-x-6">
+            <div className="flex space-x-4">
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="bg-white/10 p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/20 transform hover:scale-110 transition-all duration-200"
               >
                 <span className="sr-only">Facebook</span>
                 <svg
@@ -43,7 +69,7 @@ const Footer = () => {
               </a>
               <a
                 href="#"
-                className="text-gray-400 hover:text-white transition-colors"
+                className="bg-white/10 p-2 rounded-full text-gray-300 hover:text-white hover:bg-white/20 transform hover:scale-110 transition-all duration-200"
               >
                 <span className="sr-only">Instagram</span>
                 <svg
@@ -60,78 +86,65 @@ const Footer = () => {
               </a>
             </div>
           </div>
-          <div>
-            <h3 className="text-white text-lg font-semibold">Quick Links</h3>
-            <ul className="mt-4 space-y-2">
-              <li>
-                <Link
-                  to="/"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Home
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/packages"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Packages
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  Contact
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/faq"
-                  className="text-gray-400 hover:text-white transition-colors"
-                >
-                  FAQ
-                </Link>
-              </li>
+
+          {/* Business Hours */}
+          <div className="space-y-6">
+            <h3 className="text-white text-xl font-semibold">Business Hours</h3>
+            <ul className="space-y-3">
+              {businessHours.map((schedule) => (
+                <li key={schedule.day} className="flex items-start space-x-3">
+                  <ClockIcon className="h-5 w-5 text-gray-400 mt-1 flex-shrink-0" />
+                  <div className="flex justify-between w-full pr-8">
+                    <span className="text-white">{schedule.day}</span>
+                    <span className="text-gray-400">{schedule.hours}</span>
+                  </div>
+                </li>
+              ))}
             </ul>
           </div>
-          <div>
-            <h3 className="text-white text-lg font-semibold">Contact</h3>
-            <ul className="mt-4 space-y-2">
-              <li className="flex items-center text-gray-400">
-                <MapPinIcon className="h-5 w-5 mr-2" />
-                835 mapleridge Street, London ON, N6H 0A4
+
+          {/* Contact Info */}
+          <div className="space-y-6">
+            <h3 className="text-white text-xl font-semibold">Get in Touch</h3>
+            <ul className="space-y-4">
+              <li>
+                <a href="tel:+12262248256" className="flex items-center group">
+                  <PhoneIcon className="h-5 w-5 text-gray-400 group-hover:text-white mr-3 transition-colors" />
+                  <span className="text-gray-400 group-hover:text-white transition-colors">
+                    (226) 224-8256
+                  </span>
+                </a>
               </li>
-              <li className="flex items-center text-gray-400">
-                <PhoneIcon className="h-5 w-5 mr-2" />
-                +1 (226) 224-8256
+              <li>
+                <a
+                  href="mailto:londonelitedriving@gmail.com"
+                  className="flex items-center group"
+                >
+                  <EnvelopeIcon className="h-5 w-5 text-gray-400 group-hover:text-white mr-3 transition-colors" />
+                  <span className="text-gray-400 group-hover:text-white transition-colors">
+                    londonelitedriving@gmail.com
+                  </span>
+                </a>
               </li>
-              <li className="flex items-center text-gray-400">
-                <EnvelopeIcon className="h-5 w-5 mr-2" />
-                londonelitedriving@gmail.com
+              <li className="flex items-start group">
+                <MapPinIcon className="h-5 w-5 text-gray-400 group-hover:text-white mr-3 transition-colors mt-1" />
+                <span className="text-gray-400 group-hover:text-white transition-colors">
+                  835 Mapleridge Street,
+                  <br />
+                  London ON, N6H 0A4
+                </span>
               </li>
             </ul>
-            <div className="mt-6">
-              <a
-                href="tel:+12262248256"
-                className="inline-flex items-center px-4 py-2 border border-gray-400 text-sm font-medium rounded-md text-gray-400 hover:text-white hover:border-white transition-colors"
-              >
-                Call Now
-              </a>
+            <div className="rounded-lg overflow-hidden shadow-lg">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2919.5046828846514!2d-81.29383012357721!3d42.97322089687042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882ef2626a88ae8d%3A0x3c04b4ba92bb9e92!2s835%20Mapleridge%20St%2C%20London%2C%20ON%20N6H%200A4%2C%20Canada!5e0!3m2!1sen!2sca!4v1705161721813!5m2!1sen!2sca"
+                className="w-full h-48"
+                style={{ border: 0 }}
+                allowFullScreen=""
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
-          </div>
-          <div className="col-span-1 lg:col-span-1">
-            <h3 className="text-white text-lg font-semibold mb-4">Location</h3>
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2919.5046828846514!2d-81.29383012357721!3d42.97322089687042!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882ef2626a88ae8d%3A0x3c04b4ba92bb9e92!2s835%20Mapleridge%20St%2C%20London%2C%20ON%20N6H%200A4%2C%20Canada!5e0!3m2!1sen!2sca!4v1705161721813!5m2!1sen!2sca"
-              className="w-full h-48 rounded-lg"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            ></iframe>
           </div>
         </div>
       </div>
