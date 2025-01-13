@@ -19,9 +19,6 @@ const Booking = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
 
   useEffect(() => {
-    // Scroll to top when component mounts
-    window.scrollTo(0, 0);
-
     // Set the lesson type based on URL parameter
     const packageFromUrl = searchParams.get("package");
     if (packageFromUrl) {

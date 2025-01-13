@@ -5,11 +5,13 @@ import Packages from "./components/Packages";
 import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
 import Booking from "./components/Booking";
+import ScrollToTop from "./components/ScrollToTop";
 
 function App() {
   return (
     <Router>
       <div className="min-h-screen flex flex-col">
+        <ScrollToTop />
         <Navbar />
         <main className="flex-grow">
           <Routes>
