@@ -21,7 +21,7 @@ const Navbar = () => {
               <img
                 src="/src/images/logo.png"
                 alt="London Elite Driving Academy"
-                style={{ height: "450px", width: "auto", marginLeft: "-60px" }}
+                style={{ height: "500px", width: "auto", marginLeft: "-60px" }}
               />
             </Link>
           </div>
