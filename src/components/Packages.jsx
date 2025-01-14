@@ -3,6 +3,32 @@ import { CheckIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import "./Packages.css";
 
+const ServiceCard = ({ icon: Icon, title, price, onClick }) => {
+  return (
+    <div className="service-card-wrapper perspective-1000">
+      <div className="service-card group relative h-full w-full rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-px transition-all duration-500 hover:scale-[1.02] hover:rotate-1">
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="relative h-full rounded-xl bg-white p-6">
+          <div className="flex flex-col items-center text-center">
+            <Icon className="h-12 w-12 text-blue-600" />
+            <h4 className="mt-4 text-xl font-bold text-gray-900">{title}</h4>
+            <p className="mt-2 text-2xl font-semibold text-gray-900">
+              ${price}{" "}
+              <span className="text-base font-normal text-gray-600">+HST</span>
+            </p>
+            <button
+              onClick={onClick}
+              className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const PricingCard = ({ tier, price, features }) => {
   const navigate = useNavigate();
 
@@ -44,6 +70,12 @@ const PricingCard = ({ tier, price, features }) => {
 };
 
 const Packages = () => {
+  const navigate = useNavigate();
+
+  const handleServiceBooking = (service) => {
+    navigate(`/booking?service=${encodeURIComponent(service)}`);
+  };
+
   const packages = [
     {
       tier: "Basic Package",
@@ -100,33 +132,23 @@ const Packages = () => {
           ))}
         </div>
 
-        <div className="mt-16 p-8 bg-white rounded-xl shadow-lg">
-          <h3 className="text-2xl font-bold text-gray-900 text-center">
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
             Additional Services
           </h3>
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="flex items-center p-4 bg-gray-50 rounded-lg">
-              <div className="flex-shrink-0">
-                <ClockIcon className="h-6 w-6 text-blue-600" />
-              </div>
-              <div className="ml-4">
-                <h4 className="text-lg font-medium text-gray-900">
-                  Hourly Rate
-                </h4>
-                <p className="text-gray-600">$50/hour +HST</p>
-              </div>
-            </div>
-            <div className="flex items-center p-4 bg-gray-50 rounded-lg">
-              <div className="flex-shrink-0">
-                <MapPinIcon className="h-6 w-6 text-blue-600" />
-              </div>
-              <div className="ml-4">
-                <h4 className="text-lg font-medium text-gray-900">
-                  Out of Town Tests
-                </h4>
-                <p className="text-gray-600">$350 +HST</p>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <ServiceCard
+              icon={ClockIcon}
+              title="Hourly Rate"
+              price="50"
+              onClick={() => handleServiceBooking("hourly")}
+            />
+            <ServiceCard
+              icon={MapPinIcon}
+              title="Out of Town Tests"
+              price="350"
+              onClick={() => handleServiceBooking("out-of-town")}
+            />
           </div>
         </div>
       </div>

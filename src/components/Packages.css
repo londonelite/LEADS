@@ -74,3 +74,35 @@
   background: rgb(37, 99, 235);
   color: white;
 }
+
+/* Add these styles to your existing CSS file */
+.service-card-wrapper {
+  perspective: 1000px;
+}
+
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+/* Optional: Add these animations if you want smoother transitions */
+@keyframes gleam {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* These utility classes should be added if you're not using Tailwind */
+.from-blue-500 {
+  --tw-gradient-from: #3b82f6;
+}
+
+.to-blue-600 {
+  --tw-gradient-to: #2563eb;
+}
+
+.via-blue-600 {
+  --tw-gradient-via: #2563eb;
+}
