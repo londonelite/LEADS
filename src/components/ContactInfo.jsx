@@ -253,7 +253,7 @@ ${formData.message}`;
               </button>
 
               {/* Status Messages */}
-              {submitStatus && (
+              {submitStatus && submitStatus !== "pending" && (
                 <div
                   className={`rounded-lg p-4 ${
                     submitStatus === "success" ? "bg-green-50" : "bg-red-50"
