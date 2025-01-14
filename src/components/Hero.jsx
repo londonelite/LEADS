@@ -1,4 +1,5 @@
 import React from "react";
+import "./view.css";
 
 const Hero = () => {
   const scrollToPackages = (e) => {
