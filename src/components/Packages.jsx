@@ -1,8 +1,9 @@
 import React from "react";
 import { CheckIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
+import "./Packages.css";
 
-const PricingCard = ({ tier, price, features, popular }) => {
+const PricingCard = ({ tier, price, features }) => {
   const navigate = useNavigate();
 
   const handleBookNow = () => {
@@ -10,41 +11,34 @@ const PricingCard = ({ tier, price, features, popular }) => {
   };
 
   return (
-    <div
-      className={`flex flex-col p-8 mx-4 max-w-lg bg-white rounded-xl border ${
-        popular
-          ? "border-blue-600 shadow-xl scale-105"
-          : "border-gray-200 shadow-lg"
-      }`}
-    >
-      {popular && (
-        <div className="px-3 py-1 text-sm text-white bg-blue-600 rounded-full w-fit mb-4">
-          Most Popular
+    <div className="pricing-card-parent">
+      <div className="pricing-card">
+        <div className="glass"></div>
+        <div className="content">
+          <div className="title-section">
+            <h3 className="text-2xl font-bold text-gray-900">{tier}</h3>
+            <div className="mt-4 flex items-baseline">
+              <span className="text-5xl font-extrabold text-gray-900">
+                ${price}
+              </span>
+              <span className="ml-1 text-xl text-gray-500">+HST</span>
+            </div>
+          </div>
+          <ul className="mt-8 space-y-4 features-list">
+            {features.map((feature, index) => (
+              <li key={index} className="flex items-start feature-item">
+                <CheckIcon className="flex-shrink-0 w-5 h-5 text-emerald-500" />
+                <span className="ml-3 text-gray-600">{feature}</span>
+              </li>
+            ))}
+          </ul>
         </div>
-      )}
-      <h3 className="text-2xl font-bold text-gray-900">{tier}</h3>
-      <div className="mt-4 flex items-baseline">
-        <span className="text-5xl font-extrabold text-gray-900">${price}</span>
-        <span className="ml-1 text-xl text-gray-500">+HST</span>
+        <div className="card-bottom">
+          <button onClick={handleBookNow} className="book-now-button">
+            Book Now
+          </button>
+        </div>
       </div>
-      <ul className="mt-8 space-y-4">
-        {features.map((feature, index) => (
-          <li key={index} className="flex items-start">
-            <CheckIcon className="flex-shrink-0 w-5 h-5 text-blue-500" />
-            <span className="ml-3 text-gray-600">{feature}</span>
-          </li>
-        ))}
-      </ul>
-      <button
-        onClick={handleBookNow}
-        className={`mt-8 w-full py-3 px-4 rounded-md text-base font-medium transition-colors duration-200 ${
-          popular
-            ? "bg-blue-600 text-white hover:bg-blue-700"
-            : "bg-gray-100 text-gray-900 hover:bg-gray-200"
-        }`}
-      >
-        Book Now
-      </button>
     </div>
   );
 };
@@ -72,7 +66,6 @@ const Packages = () => {
         "Practice tests included",
         "Priority booking",
       ],
-      popular: true,
     },
     {
       tier: "Ultimate Package",

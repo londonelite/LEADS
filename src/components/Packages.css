@@ -1,0 +1,76 @@
+.pricing-card-parent {
+  perspective: 1000px;
+  padding: 20px;
+}
+
+.pricing-card {
+  position: relative;
+  height: 100%;
+  border-radius: 25px;
+  background: linear-gradient(
+    135deg,
+    rgb(59, 130, 246) 0%,
+    rgb(37, 99, 235) 100%
+  );
+  transition: all 0.5s ease-in-out;
+  transform-style: preserve-3d;
+  box-shadow: rgba(37, 99, 235, 0) 40px 50px 25px -40px,
+    rgba(37, 99, 235, 0.2) 0px 25px 25px -5px;
+}
+
+.glass {
+  transform-style: preserve-3d;
+  position: absolute;
+  inset: 8px;
+  border-radius: 20px;
+  background: linear-gradient(
+    0deg,
+    rgba(255, 255, 255, 0.349) 0%,
+    rgba(255, 255, 255, 0.815) 100%
+  );
+  transform: translate3d(0px, 0px, 25px);
+  border-left: 1px solid white;
+  border-bottom: 1px solid white;
+  transition: all 0.5s ease-in-out;
+}
+
+.content {
+  padding: 30px;
+  transform: translate3d(0, 0, 26px);
+  position: relative;
+}
+
+.card-bottom {
+  padding: 20px 30px;
+  transform-style: preserve-3d;
+  position: relative;
+  transform: translate3d(0, 0, 26px);
+}
+
+.book-now-button {
+  width: 100%;
+  padding: 12px 24px;
+  background: white;
+  color: rgb(37, 99, 235);
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  transition: all 0.2s ease-in-out;
+  transform: translate3d(0, 0, 0);
+  box-shadow: rgba(5, 71, 17, 0) 0px 7px 5px -5px;
+}
+
+.pricing-card-parent:hover .pricing-card {
+  transform: rotate3d(1, 1, 0, 20deg);
+  box-shadow: rgba(37, 99, 235, 0.2) -5px 20px 10px 0px;
+}
+
+.pricing-card-parent:hover .book-now-button {
+  transform: translate3d(0, 0, 50px);
+  box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;
+}
+
+.book-now-button:hover {
+  background: rgb(37, 99, 235);
+  color: white;
+}
