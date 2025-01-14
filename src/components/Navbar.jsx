@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import AnimatedBookButton from "./AnimatedBookButton";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigation = [
     { name: "Home", href: "/" },
-    { name: "Contact", href: "/contact" },
+    { name: "Contact Us", href: "/contact" },
     { name: "Book Now", href: "/booking" },
   ];
 
@@ -31,18 +32,16 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className="px-3 py-2 text-sm font-semibold text-gray-700 hover:text-blue-600 transition-colors border-b-2 border-transparent hover:border-blue-600"
+                  className="group relative px-3 py-2 text-sm font-semibold text-gray-700 transition-all duration-300"
                 >
-                  {item.name}
+                  <span className="relative z-10">{item.name}</span>
+                  {/* Bottom border slide effect */}
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300 ease-out"></span>
+                  {/* Background fade effect */}
+                  <span className="absolute inset-0 w-full h-full bg-primary/5 scale-0 group-hover:scale-100 transition-transform duration-300 ease-out rounded-lg"></span>
                 </Link>
               ) : (
-                <Link
-                  key={item.name}
-                  to={item.href}
-                  className="inline-flex items-center px-4 py-2 border border-blue-600 text-sm font-medium rounded-md text-blue-600 bg-white hover:bg-blue-600 hover:text-white transition-colors duration-200"
-                >
-                  {item.name}
-                </Link>
+                <AnimatedBookButton key={item.name} href={item.href} />
               )
             )}
           </div>
@@ -69,14 +68,18 @@ const Navbar = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`block px-3 py-2 text-base font-medium ${
-                  item.name === "Book Now"
-                    ? "text-blue-600 hover:bg-blue-50"
-                    : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-                }`}
+                className={`block px-3 py-2 text-base font-medium 
+                  ${
+                    item.name === "Book Now"
+                      ? "text-blue-600 hover:bg-blue-50"
+                      : "group relative overflow-hidden text-gray-700 hover:text-primary transition-colors duration-300"
+                  }`}
                 onClick={() => setIsOpen(false)}
               >
-                {item.name}
+                <span className="relative z-10">{item.name}</span>
+                {item.name !== "Book Now" && (
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-primary group-hover:w-full transition-all duration-300 ease-out"></span>
+                )}
               </Link>
             ))}
           </div>
