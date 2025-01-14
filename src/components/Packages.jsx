@@ -37,10 +37,10 @@ const PricingCard = ({ tier, price, features }) => {
   };
 
   return (
-    <div className="pricing-card-parent">
-      <div className="pricing-card">
+    <div className="pricing-card-parent h-full">
+      <div className="pricing-card flex flex-col h-full">
         <div className="glass"></div>
-        <div className="content">
+        <div className="content flex-grow">
           <div className="title-section">
             <h3 className="text-2xl font-bold text-gray-900">{tier}</h3>
             <div className="mt-4 flex items-baseline">
@@ -59,7 +59,7 @@ const PricingCard = ({ tier, price, features }) => {
             ))}
           </ul>
         </div>
-        <div className="card-bottom">
+        <div className="card-bottom mt-auto pt-8">
           <button onClick={handleBookNow} className="book-now-button">
             Book Now
           </button>
