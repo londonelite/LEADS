@@ -52,7 +52,7 @@ const Booking = () => {
     const times = {
       morning: "Morning (9AM - 12PM)",
       afternoon: "Afternoon (12PM - 4PM)",
-      evening: "Evening (4PM - 7PM)",
+      evening: "Evening (4PM - 6PM)",
     };
     return times[time] || time;
   };
