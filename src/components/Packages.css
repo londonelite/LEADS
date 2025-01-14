@@ -40,6 +40,57 @@
   position: relative;
 }
 
+/* New styles for the feature list items */
+.features-list {
+  transform-style: preserve-3d;
+}
+
+.feature-item {
+  transition: all 0.2s ease-in-out;
+  transform: translate3d(0, 0, 0);
+  box-shadow: rgba(37, 99, 235, 0) 0px 7px 5px -5px;
+}
+
+/* Add transition delays for each feature item */
+.feature-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.feature-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.feature-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.feature-item:nth-child(4) {
+  transition-delay: 0.4s;
+}
+
+.feature-item:nth-child(5) {
+  transition-delay: 0.5s;
+}
+
+.feature-item:nth-child(6) {
+  transition-delay: 0.6s;
+}
+
+.feature-item:nth-child(7) {
+  transition-delay: 0.7s;
+}
+
+/* Hover effect for the feature items */
+.pricing-card-parent:hover .pricing-card {
+  transform: rotate3d(1, 1, 0, 20deg);
+  box-shadow: rgba(37, 99, 235, 0.2) -5px 20px 10px 0px;
+}
+
+.pricing-card-parent:hover .feature-item {
+  transform: translate3d(0, 0, 50px);
+  box-shadow: rgba(37, 99, 235, 0.1) -5px 20px 10px 0px;
+}
+
 .card-bottom {
   padding: 20px 30px;
   transform-style: preserve-3d;
@@ -60,11 +111,6 @@
   box-shadow: rgba(5, 71, 17, 0) 0px 7px 5px -5px;
 }
 
-.pricing-card-parent:hover .pricing-card {
-  transform: rotate3d(1, 1, 0, 20deg);
-  box-shadow: rgba(37, 99, 235, 0.2) -5px 20px 10px 0px;
-}
-
 .pricing-card-parent:hover .book-now-button {
   transform: translate3d(0, 0, 50px);
   box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;
@@ -73,36 +119,4 @@
 .book-now-button:hover {
   background: rgb(37, 99, 235);
   color: white;
-}
-
-/* Add these styles to your existing CSS file */
-.service-card-wrapper {
-  perspective: 1000px;
-}
-
-.perspective-1000 {
-  perspective: 1000px;
-}
-
-/* Optional: Add these animations if you want smoother transitions */
-@keyframes gleam {
-  0% {
-    transform: translateX(-100%);
-  }
-  100% {
-    transform: translateX(100%);
-  }
-}
-
-/* These utility classes should be added if you're not using Tailwind */
-.from-blue-500 {
-  --tw-gradient-from: #3b82f6;
-}
-
-.to-blue-600 {
-  --tw-gradient-to: #2563eb;
-}
-
-.via-blue-600 {
-  --tw-gradient-via: #2563eb;
 }

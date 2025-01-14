@@ -1,4 +1,26 @@
+import React from "react";
+
 const Hero = () => {
+  const scrollToPackages = (e) => {
+    e.preventDefault();
+    const packagesSection = document.getElementById("packages");
+    if (packagesSection) {
+      // Get the navbar height to offset the scroll position
+      // Adjust this value or get it dynamically if your navbar height is different
+      const navbarHeight = 80; // Example height in pixels
+
+      const targetPosition =
+        packagesSection.getBoundingClientRect().top +
+        window.pageYOffset -
+        navbarHeight;
+
+      window.scrollTo({
+        top: targetPosition,
+        behavior: "smooth",
+      });
+    }
+  };
+
   return (
     <div className="relative bg-gradient-to-r from-blue-600 to-blue-800">
       <div className="absolute inset-0 bg-black opacity-50"></div>
@@ -14,10 +36,9 @@ const Hero = () => {
           <div className="mt-10 space-x-4">
             <a
               href="#packages"
-              className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-white hover:bg-gray-50 transition-colors duration-200"
-            >
-              View Packages
-            </a>
+              onClick={scrollToPackages}
+              className="slide-button type1 inline-flex items-center text-base font-medium rounded-md text-white uppercase tracking-wide"
+            ></a>
           </div>
         </div>
       </div>
