@@ -1,5 +1,4 @@
 import React from "react";
-import "./view.css";
 
 const Hero = () => {
   const scrollToPackages = (e) => {
@@ -38,8 +37,10 @@ const Hero = () => {
             <a
               href="#packages"
               onClick={scrollToPackages}
-              className="slide-button type1 inline-flex items-center text-base font-medium rounded-md text-white uppercase tracking-wide"
-            ></a>
+              className="inline-flex items-center px-8 py-3 text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300 uppercase tracking-wide shadow-lg hover:shadow-xl"
+            >
+              View Packages
+            </a>
           </div>
         </div>
       </div>

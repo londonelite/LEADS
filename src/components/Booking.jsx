@@ -19,13 +19,27 @@ const Booking = () => {
   const [submitStatus, setSubmitStatus] = useState(null);
 
   useEffect(() => {
-    // Set the lesson type based on URL parameter
     const packageFromUrl = searchParams.get("package");
+    const serviceFromUrl = searchParams.get("service");
+
     if (packageFromUrl) {
       setFormData((prev) => ({
         ...prev,
         lessonType: packageFromUrl,
       }));
+    } else if (serviceFromUrl) {
+      const serviceMapping = {
+        hourly: "Hourly",
+        "out-of-town": "Out of Town",
+      };
+
+      const mappedService = serviceMapping[serviceFromUrl];
+      if (mappedService) {
+        setFormData((prev) => ({
+          ...prev,
+          lessonType: mappedService,
+        }));
+      }
     }
   }, [searchParams]);
 
@@ -84,7 +98,7 @@ Additional Notes:
 ${formData.message || "No additional notes provided"}`;
 
     const templateParams = {
-      to_email: "omarhossain1610@gmail.com",
+      to_email: "londonelitedriving@gmail.com",
       from_name: formData.name,
       from_email: formData.email,
       booking_details: formattedMessage,
@@ -92,10 +106,10 @@ ${formData.message || "No additional notes provided"}`;
 
     try {
       await emailjs.send(
-        "service_sktyzkg",
-        "template_cmcqope",
+        "service_p0mu1fw",
+        "template_rua52jb",
         templateParams,
-        "RInHbSGYfFbhM8V1B"
+        "7oKSxgrekWr_NUYxm"
       );
 
       setSubmitStatus("success");
@@ -116,6 +130,11 @@ ${formData.message || "No additional notes provided"}`;
     }
   };
 
+  const inputClassName =
+    "mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 px-3 py-2 bg-white";
+  const selectClassName =
+    "mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 px-3 py-2 bg-white";
+
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
@@ -127,145 +146,154 @@ ${formData.message || "No additional notes provided"}`;
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
+            <div className="form-group">
               <label
                 htmlFor="name"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
               >
                 Full Name
+                <input
+                  type="text"
+                  name="name"
+                  id="name"
+                  required
+                  value={formData.name}
+                  onChange={handleChange}
+                  className={inputClassName}
+                />
               </label>
-              <input
-                type="text"
-                name="name"
-                id="name"
-                required
-                value={formData.name}
-                onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              />
             </div>
 
-            <div>
+            <div className="form-group">
               <label
                 htmlFor="email"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
               >
                 Email Address
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  required
+                  value={formData.email}
+                  onChange={handleChange}
+                  className={inputClassName}
+                />
               </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                required
-                value={formData.email}
-                onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              />
             </div>
 
-            <div>
+            <div className="form-group">
               <label
                 htmlFor="phone"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
               >
                 Phone Number
+                <input
+                  type="tel"
+                  name="phone"
+                  id="phone"
+                  required
+                  value={formData.phone}
+                  onChange={handleChange}
+                  className={inputClassName}
+                />
               </label>
-              <input
-                type="tel"
-                name="phone"
-                id="phone"
-                required
-                value={formData.phone}
-                onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              />
             </div>
 
-            <div>
+            <div className="form-group relative">
               <label
                 htmlFor="preferredDate"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer w-full"
               >
                 Preferred Date
+                <div
+                  className="relative mt-1"
+                  onClick={() =>
+                    document.getElementById("preferredDate").showPicker()
+                  }
+                >
+                  <input
+                    type="date"
+                    name="preferredDate"
+                    id="preferredDate"
+                    required
+                    value={formData.preferredDate}
+                    onChange={handleChange}
+                    min={new Date().toISOString().split("T")[0]}
+                    className={inputClassName}
+                  />
+                </div>
               </label>
-              <input
-                type="date"
-                name="preferredDate"
-                id="preferredDate"
-                required
-                value={formData.preferredDate}
-                onChange={handleChange}
-                min={new Date().toISOString().split("T")[0]}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              />
             </div>
 
-            <div>
+            <div className="form-group">
               <label
                 htmlFor="preferredTime"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
               >
                 Preferred Time
+                <select
+                  name="preferredTime"
+                  id="preferredTime"
+                  required
+                  value={formData.preferredTime}
+                  onChange={handleChange}
+                  className={selectClassName}
+                >
+                  <option value="">Select a time</option>
+                  <option value="morning">Morning (9AM - 12PM)</option>
+                  <option value="afternoon">Afternoon (12PM - 4PM)</option>
+                  <option value="evening">Evening (4PM - 6PM)</option>
+                </select>
               </label>
-              <select
-                name="preferredTime"
-                id="preferredTime"
-                required
-                value={formData.preferredTime}
-                onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              >
-                <option value="">Select a time</option>
-                <option value="morning">Morning (9AM - 12PM)</option>
-                <option value="afternoon">Afternoon (12PM - 4PM)</option>
-                <option value="evening">Evening (4PM - 6PM)</option>
-              </select>
             </div>
 
-            <div>
+            <div className="form-group">
               <label
                 htmlFor="lessonType"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
               >
                 Package Type
+                <select
+                  name="lessonType"
+                  id="lessonType"
+                  required
+                  value={formData.lessonType}
+                  onChange={handleChange}
+                  className={selectClassName}
+                >
+                  <option value="Basic Package">
+                    Basic Package ($599 +HST)
+                  </option>
+                  <option value="Premium Package">
+                    Premium Package ($720 +HST)
+                  </option>
+                  <option value="Ultimate Package">
+                    Ultimate Package ($760 +HST)
+                  </option>
+                  <option value="Hourly">Hourly Rate ($50/hour +HST)</option>
+                  <option value="Out of Town">
+                    Out of Town Test ($350 +HST)
+                  </option>
+                </select>
               </label>
-              <select
-                name="lessonType"
-                id="lessonType"
-                required
-                value={formData.lessonType}
-                onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              >
-                <option value="Basic Package">Basic Package ($599 +HST)</option>
-                <option value="Premium Package">
-                  Premium Package ($720 +HST)
-                </option>
-                <option value="Ultimate Package">
-                  Ultimate Package ($760 +HST)
-                </option>
-                <option value="Hourly">Hourly Rate ($50/hour +HST)</option>
-                <option value="Out of Town">
-                  Out of Town Test ($350 +HST)
-                </option>
-              </select>
             </div>
 
-            <div>
+            <div className="form-group">
               <label
                 htmlFor="message"
-                className="block text-sm font-medium text-gray-700"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
               >
                 Additional Notes
+                <textarea
+                  name="message"
+                  id="message"
+                  rows={4}
+                  value={formData.message}
+                  onChange={handleChange}
+                  className={inputClassName}
+                />
               </label>
-              <textarea
-                name="message"
-                id="message"
-                rows={4}
-                value={formData.message}
-                onChange={handleChange}
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"
-              />
             </div>
 
             <div>

@@ -84,10 +84,10 @@ ${formData.message}`;
 
     try {
       await emailjs.send(
-        "service_sktyzkg",
-        "template_m6v3319",
+        "service_p0mu1fw", // Service ID
+        "template_e5mi9wa", // Template ID
         templateParams,
-        "RInHbSGYfFbhM8V1B"
+        "7oKSxgrekWr_NUYxm" // Public Key
       );
 
       setSubmitStatus("success");
