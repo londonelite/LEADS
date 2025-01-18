@@ -112,7 +112,7 @@
 }
 
 .pricing-card-parent:hover .book-now-button {
-  transform: translate3d(0, 0, 50px);
+  transform: translate3d(-1, -10px, 50px); /* Added -10px Y translation */
   box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;
 }
 
