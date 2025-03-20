@@ -3,32 +3,6 @@ import { CheckIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import "./Packages.css";
 
-const ServiceCard = ({ icon: Icon, title, price, onClick }) => {
-  return (
-    <div className="service-card-wrapper perspective-1000">
-      <div className="service-card group relative h-full w-full rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-px transition-all duration-500 hover:scale-[1.02] hover:rotate-1">
-        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-        <div className="relative h-full rounded-xl bg-white p-6">
-          <div className="flex flex-col items-center text-center">
-            <Icon className="h-12 w-12 text-blue-600" />
-            <h4 className="mt-4 text-xl font-bold text-gray-900">{title}</h4>
-            <p className="mt-2 text-2xl font-semibold text-gray-900">
-              ${price}{" "}
-              <span className="text-base font-normal text-gray-600">+HST</span>
-            </p>
-            <button
-              onClick={onClick}
-              className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
-            >
-              Book Now
-            </button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
 const PricingCard = ({ tier, price, features }) => {
   const navigate = useNavigate();
 
@@ -69,49 +43,150 @@ const PricingCard = ({ tier, price, features }) => {
   );
 };
 
+const HourlyPackageCard = ({ hours, price, onClick }) => {
+  return (
+    <div className="service-card-wrapper perspective-1000">
+      <div className="service-card group relative h-full w-full rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-px transition-all duration-500 hover:scale-[1.02] hover:rotate-1">
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="relative h-full rounded-xl bg-white p-6">
+          <div className="flex flex-col items-center text-center">
+            <ClockIcon className="h-12 w-12 text-blue-600" />
+            <h4 className="mt-4 text-xl font-bold text-gray-900">
+              {hours} {parseInt(hours) === 1 ? "Hour" : "Hours"}
+            </h4>
+            <p className="mt-2 text-2xl font-semibold text-gray-900">
+              ${price}{" "}
+              <span className="text-base font-normal text-gray-600">+HST</span>
+            </p>
+            <button
+              onClick={onClick}
+              className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+const RoadTestPackageCard = ({ title, hours, price, onClick }) => {
+  return (
+    <div className="service-card-wrapper perspective-1000">
+      <div className="service-card group relative h-full w-full rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-px transition-all duration-500 hover:scale-[1.02] hover:rotate-1">
+        <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+        <div className="relative h-full rounded-xl bg-white p-6">
+          <div className="flex flex-col items-center text-center">
+            <MapPinIcon className="h-12 w-12 text-blue-600" />
+            <h4 className="mt-4 text-xl font-bold text-gray-900">{title}</h4>
+            <p className="mt-2 text-2xl font-semibold text-gray-900">
+              ${price}{" "}
+              <span className="text-base font-normal text-gray-600">+HST</span>
+            </p>
+            <button
+              onClick={onClick}
+              className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
+            >
+              Book Now
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
 const Packages = () => {
   const navigate = useNavigate();
 
-  const handleServiceBooking = (service) => {
-    navigate(`/booking?service=${encodeURIComponent(service)}`);
+  const handlePackageBooking = (packageType) => {
+    navigate(`/booking?package=${encodeURIComponent(packageType)}`);
+  };
+
+  const handleHourlyBooking = (hours) => {
+    navigate(`/booking?hourly=${encodeURIComponent(hours)}`);
+  };
+
+  const handleRoadTestBooking = (type) => {
+    navigate(`/booking?roadtest=${encodeURIComponent(type)}`);
   };
 
   const packages = [
     {
-      tier: "Basic Package",
-      price: 599,
+      tier: "Package #1",
+      price: 549.99,
       features: [
-        "20 hours online training",
-        "10 hours in-car training",
-        "Flexible scheduling",
-        "Practice tests included",
+        "MTO certified online course",
+        "20 Hours Online Class",
+        "10 Hours in Car Training",
+        "4 Month Reduction to Obtain your G2 Road Test Faster",
+        "One on one in vehicle training flexible appointments",
+        "Pick up and drop off services in London",
+        "Vehicle Not Provided for Road Test",
       ],
     },
     {
-      tier: "Premium Package",
-      price: 720,
+      tier: "Package #2",
+      price: 699.99,
       features: [
-        "20 hours online training",
-        "10 hours in-car training",
-        "1 hour road test preparation",
-        "Flexible scheduling",
-        "Practice tests included",
-        "Priority booking",
+        "MTO certified online course",
+        "20 Hours Online Class",
+        "10 Hours in Car Training",
+        "1.5 Hours Practice Before Road Test",
+        "4 Month Reduction to Obtain your G2 Road Test Faster",
+        "One on one in vehicle training flexible appointments",
+        "Pick up and drop off services in London",
+        "Vehicle Provided for Road Test",
       ],
     },
     {
-      tier: "Ultimate Package",
-      price: 760,
+      tier: "Package #3",
+      price: 799.99,
       features: [
-        "20 hours online training",
-        "10 hours in-car training",
-        "2 hours road test preparation",
-        "Flexible scheduling",
-        "Practice tests included",
-        "Priority booking",
-        "Free refresher lesson",
+        "MTO certified online course",
+        "Online Course Available",
+        "20 Hours Online Class",
+        "12 Hours in Car Training",
+        "2 Hours Practice Before Road Test",
+        "4 Month Reduction to Obtain your G2 Road Test Faster",
+        "One on one in vehicle training flexible appointments",
+        "Pick up and drop off services in London",
+        "Vehicle Provided for Road Test",
       ],
     },
+    {
+      tier: "Package #4",
+      price: 930,
+      features: [
+        "MTO certified online course",
+        "Online Course Available",
+        "20 Hours Online Class",
+        "15 Hours in Car Training",
+        "2 Hours Practice Before Road Test",
+        "4 Month Reduction to Obtain your G2 Road Test Faster",
+        "One on one in vehicle training flexible appointments",
+        "Pick up and drop off services in London",
+        "Vehicle Provided for Road Test",
+      ],
+    },
+  ];
+
+  const hourlyPackages = [
+    { hours: "1", price: 45 },
+    { hours: "2", price: 90 },
+    { hours: "4", price: 180 },
+    { hours: "6", price: 270 },
+    { hours: "8", price: 360 },
+    { hours: "10", price: 450 },
+  ];
+
+  const roadTestPackages = [
+    { title: "1.5 Hours + Road Test", hours: "1.5", price: 140 },
+    { title: "2 Hours + Road Test", hours: "2", price: 210 },
+    { title: "4 Hours + Road Test", hours: "4", price: 310 },
+    { title: "6 Hours + Road Test", hours: "6", price: 410 },
+    { title: "Out of Town", hours: "Out of Town", price: 300 },
   ];
 
   return (
@@ -119,36 +194,62 @@ const Packages = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
-            Learning Packages
+            MTO Certificate Packages
           </h2>
           <p className="mt-4 text-xl text-gray-600">
             Choose the perfect package for your learning journey
           </p>
+          <p className="mt-2 text-lg text-gray-600">
+            <span className="font-medium">Local Areas:</span> London, Byron,
+            Lambeth, Kilworth and Arva
+            <br />
+            <span className="font-medium">Out of Town:</span> Ilderton, Komoka,
+            and Delaware (see Terms and Conditions)
+          </p>
         </div>
 
-        <div className="mt-12 space-y-4 sm:mt-16 sm:space-y-0 sm:grid sm:grid-cols-3 sm:gap-6">
+        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
           {packages.map((pkg, index) => (
             <PricingCard key={index} {...pkg} />
           ))}
         </div>
 
-        <div className="mt-16">
-          <h3 className="text-2xl font-bold text-gray-900 text-center mb-8">
-            Additional Services
+        <div className="mt-20">
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">
+            Hourly Packages without Certificate
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <ServiceCard
-              icon={ClockIcon}
-              title="Hourly Rate"
-              price="50"
-              onClick={() => handleServiceBooking("hourly")}
-            />
-            <ServiceCard
-              icon={MapPinIcon}
-              title="Out of Town Tests"
-              price="350"
-              onClick={() => handleServiceBooking("out-of-town")}
-            />
+          <p className="text-center text-gray-600 mb-8">
+            Flexible training options without MTO certification
+          </p>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+            {hourlyPackages.map((pkg, index) => (
+              <HourlyPackageCard
+                key={index}
+                hours={pkg.hours}
+                price={pkg.price}
+                onClick={() => handleHourlyBooking(pkg.hours)}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-20">
+          <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">
+            Road Test Packages
+          </h3>
+          <p className="text-center text-gray-600 mb-8">
+            Practice sessions with road test included
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+            {roadTestPackages.map((pkg, index) => (
+              <RoadTestPackageCard
+                key={index}
+                title={pkg.title}
+                hours={pkg.hours}
+                price={pkg.price}
+                onClick={() => handleRoadTestBooking(pkg.hours)}
+              />
+            ))}
           </div>
         </div>
       </div>

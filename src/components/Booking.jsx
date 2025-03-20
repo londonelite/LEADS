@@ -11,33 +11,45 @@ const Booking = () => {
     phone: "",
     preferredDate: "",
     preferredTime: "",
-    lessonType: "Basic Package",
+    lessonType: "Package #1",
     message: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
+  const [termsAccepted, setTermsAccepted] = useState(false);
+  const [showTerms, setShowTerms] = useState(false);
 
   useEffect(() => {
+    // Get URL parameters
     const packageFromUrl = searchParams.get("package");
-    const serviceFromUrl = searchParams.get("service");
+    const hourlyFromUrl = searchParams.get("hourly");
+    const roadTestFromUrl = searchParams.get("roadtest");
 
+    // Set the appropriate lesson type based on URL parameters
     if (packageFromUrl) {
       setFormData((prev) => ({
         ...prev,
         lessonType: packageFromUrl,
       }));
-    } else if (serviceFromUrl) {
-      const serviceMapping = {
-        hourly: "Hourly",
-        "out-of-town": "Out of Town",
-      };
-
-      const mappedService = serviceMapping[serviceFromUrl];
-      if (mappedService) {
+    } else if (hourlyFromUrl) {
+      setFormData((prev) => ({
+        ...prev,
+        lessonType: `Hourly (${hourlyFromUrl} Hour${
+          hourlyFromUrl === "1" ? "" : "s"
+        })`,
+      }));
+    } else if (roadTestFromUrl) {
+      // Handle different road test packages
+      if (roadTestFromUrl === "Out of Town") {
         setFormData((prev) => ({
           ...prev,
-          lessonType: mappedService,
+          lessonType: "Road Test (Out of Town)",
+        }));
+      } else {
+        setFormData((prev) => ({
+          ...prev,
+          lessonType: `Road Test (${roadTestFromUrl} Hours)`,
         }));
       }
     }
@@ -51,17 +63,6 @@ const Booking = () => {
     }));
   };
 
-  const formatLessonType = (type) => {
-    const types = {
-      "Basic Package": "Basic Package ($599 +HST)",
-      "Premium Package": "Premium Package ($720 +HST)",
-      "Ultimate Package": "Ultimate Package ($760 +HST)",
-      Hourly: "Hourly Rate ($50/hour +HST)",
-      "Out of Town": "Out of Town Test ($350 +HST)",
-    };
-    return types[type] || type;
-  };
-
   const formatTime = (time) => {
     const times = {
       morning: "Morning (9AM - 12PM)",
@@ -73,6 +74,12 @@ const Booking = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!termsAccepted) {
+      alert("Please accept the terms and conditions to proceed.");
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus("pending");
 
@@ -92,7 +99,7 @@ Email: ${formData.email}
 Phone: ${formData.phone}
 Preferred Date: ${formattedDate}
 Preferred Time: ${formatTime(formData.preferredTime)}
-Package Selected: ${formatLessonType(formData.lessonType)}
+Package Selected: ${formData.lessonType}
 
 Additional Notes:
 ${formData.message || "No additional notes provided"}`;
@@ -119,15 +126,20 @@ ${formData.message || "No additional notes provided"}`;
         phone: "",
         preferredDate: "",
         preferredTime: "",
-        lessonType: "Basic Package",
+        lessonType: "Package #1",
         message: "",
       });
+      setTermsAccepted(false);
     } catch (error) {
       console.error("Error sending email:", error);
       setSubmitStatus("error");
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const toggleTerms = () => {
+    setShowTerms(!showTerms);
   };
 
   const inputClassName =
@@ -262,18 +274,47 @@ ${formData.message || "No additional notes provided"}`;
                   onChange={handleChange}
                   className={selectClassName}
                 >
-                  <option value="Basic Package">
-                    Basic Package ($599 +HST)
+                  {/* Certificate Packages */}
+                  <option value="Package #1">Package #1 ($549.99 +HST)</option>
+                  <option value="Package #2">Package #2 ($699.99 +HST)</option>
+                  <option value="Package #3">Package #3 ($799.99 +HST)</option>
+                  <option value="Package #4">Package #4 ($930 +HST)</option>
+
+                  {/* Hourly Packages */}
+                  <option value="Hourly (1 Hour)">
+                    Hourly (1 Hour - $45 +HST)
                   </option>
-                  <option value="Premium Package">
-                    Premium Package ($720 +HST)
+                  <option value="Hourly (2 Hours)">
+                    Hourly (2 Hours - $90 +HST)
                   </option>
-                  <option value="Ultimate Package">
-                    Ultimate Package ($760 +HST)
+                  <option value="Hourly (4 Hours)">
+                    Hourly (4 Hours - $180 +HST)
                   </option>
-                  <option value="Hourly">Hourly Rate ($50/hour +HST)</option>
-                  <option value="Out of Town">
-                    Out of Town Test ($350 +HST)
+                  <option value="Hourly (6 Hours)">
+                    Hourly (6 Hours - $270 +HST)
+                  </option>
+                  <option value="Hourly (8 Hours)">
+                    Hourly (8 Hours - $360 +HST)
+                  </option>
+                  <option value="Hourly (10 Hours)">
+                    Hourly (10 Hours - $450 +HST)
+                  </option>
+
+                  {/* Road Test Packages */}
+                  <option value="Road Test (1.5 Hours)">
+                    Road Test (1.5 Hours - $140 +HST)
+                  </option>
+                  <option value="Road Test (2 Hours)">
+                    Road Test (2 Hours - $210 +HST)
+                  </option>
+                  <option value="Road Test (4 Hours)">
+                    Road Test (4 Hours - $310 +HST)
+                  </option>
+                  <option value="Road Test (6 Hours)">
+                    Road Test (6 Hours - $410 +HST)
+                  </option>
+                  <option value="Road Test (Out of Town)">
+                    Road Test (Out of Town - $300 +HST)
                   </option>
                 </select>
               </label>
@@ -296,66 +337,131 @@ ${formData.message || "No additional notes provided"}`;
               </label>
             </div>
 
+            <div className="form-group">
+              <div className="flex items-start">
+                <div className="flex items-center h-5">
+                  <input
+                    id="terms"
+                    name="terms"
+                    type="checkbox"
+                    checked={termsAccepted}
+                    onChange={() => setTermsAccepted(!termsAccepted)}
+                    className="focus:ring-blue-500 h-4 w-4 text-blue-600 border-gray-300 rounded"
+                    required
+                  />
+                </div>
+                <div className="ml-3 text-sm">
+                  <label htmlFor="terms" className="font-medium text-gray-700">
+                    I agree to the{" "}
+                    <button
+                      type="button"
+                      onClick={toggleTerms}
+                      className="text-blue-600 hover:text-blue-800 focus:outline-none underline"
+                    >
+                      terms and conditions
+                    </button>
+                  </label>
+                </div>
+              </div>
+
+              {showTerms && (
+                <div className="mt-4 p-4 bg-gray-50 rounded-lg border border-gray-200">
+                  <div className="mb-4">
+                    <h3 className="text-lg font-semibold text-gray-900">
+                      Terms and Conditions
+                    </h3>
+                  </div>
+
+                  <div className="mb-4">
+                    <h4 className="text-md font-semibold text-gray-900">
+                      Privacy and Information
+                    </h4>
+                    <p className="mt-1 text-sm text-gray-700">
+                      Any and all personal information shared between the
+                      student and London Elite Driving will not be shared to any
+                      third party to the best of our ability. The information we
+                      gather will only be used to contact the student.
+                    </p>
+                  </div>
+
+                  <div className="mb-4">
+                    <h4 className="text-md font-semibold text-gray-900">
+                      Refund Policy
+                    </h4>
+                    <p className="mt-1 text-sm text-gray-700">
+                      Bookings are non-refundable, and can carry additional
+                      charges if cheques are dishonoured. Students must give
+                      24-hour notice to our office or their instructor to
+                      reschedule, otherwise there will be a $45 cancellation
+                      fee.
+                    </p>
+                  </div>
+
+                  <div>
+                    <h4 className="text-md font-semibold text-gray-900">
+                      Terms and Conditions
+                    </h4>
+                    <ul className="mt-1 text-sm text-gray-700 list-disc pl-5 space-y-1">
+                      <li>
+                        Students must obtain their G1 driving license to start
+                        lessons.
+                      </li>
+                      <li>
+                        Students must finish both the online and in-car lessons
+                        within a year, otherwise they cannot be certified and
+                        will have to pay the full amount to restart.
+                      </li>
+                      <li>
+                        Students from out of town must either pay at increased
+                        rates or must meet with instructors in local areas to
+                        accommodate instructors for their time.
+                      </li>
+                      <li>
+                        London Elite Driving does not issue certificates, only
+                        the MTO can distribute certificates. Students may
+                        request their driver's licence history from their local
+                        vehicle licensing office.
+                      </li>
+                      <li>
+                        London Elite Driving has the right to potentially delay
+                        or cancel due to road and/or traffic conditions.
+                      </li>
+                    </ul>
+                  </div>
+
+                  <div className="mt-4 flex justify-end">
+                    <button
+                      type="button"
+                      onClick={toggleTerms}
+                      className="text-sm font-medium text-blue-600 hover:text-blue-800"
+                    >
+                      Close
+                    </button>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <div>
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
+                className="w-full flex justify-center py-2 px-4  border-transparent rounded-md shadow-sm text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 disabled:opacity-50"
               >
-                {isSubmitting ? "Submitting..." : "Book Now"}
+                {isSubmitting ? "Submitting..." : "Submit Booking"}
               </button>
             </div>
 
             {submitStatus === "success" && (
-              <div className="rounded-md bg-green-50 p-4">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg
-                      className="h-5 w-5 text-green-400"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-green-800">
-                      Booking request submitted successfully! We'll contact you
-                      shortly.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <p className="mt-4 text-green-600 text-center">
+                Booking request submitted successfully! We'll get back to you
+                soon.
+              </p>
             )}
-
             {submitStatus === "error" && (
-              <div className="rounded-md bg-red-50 p-4">
-                <div className="flex">
-                  <div className="flex-shrink-0">
-                    <svg
-                      className="h-5 w-5 text-red-400"
-                      viewBox="0 0 20 20"
-                      fill="currentColor"
-                    >
-                      <path
-                        fillRule="evenodd"
-                        d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z"
-                        clipRule="evenodd"
-                      />
-                    </svg>
-                  </div>
-                  <div className="ml-3">
-                    <p className="text-sm font-medium text-red-800">
-                      There was an error submitting your booking. Please try
-                      again.
-                    </p>
-                  </div>
-                </div>
-              </div>
+              <p className="mt-4 text-red-600 text-center">
+                Something went wrong. Please try again later.
+              </p>
             )}
           </form>
         </div>

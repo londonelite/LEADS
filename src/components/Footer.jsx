@@ -1,13 +1,15 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   PhoneIcon,
   EnvelopeIcon,
   MapPinIcon,
   ClockIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const [showTermsModal, setShowTermsModal] = useState(false);
 
   const businessHours = [
     { day: "Monday", hours: "8:00 AM - 6:00 PM" },
@@ -112,7 +114,112 @@ const Footer = () => {
             </div>
           </div>
         </div>
+
+        {/* Bottom Section with Copyright and Terms */}
+        <div className="mt-12 pt-8 border-t border-gray-700">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <p className="text-gray-400 text-sm">
+              © {currentYear} London Elite Driving Academy. All rights reserved.
+            </p>
+            <div className="mt-4 md:mt-0">
+              <button
+                onClick={() => setShowTermsModal(true)}
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                View Terms & Conditions
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
+
+      {/* Terms and Conditions Modal */}
+      {showTermsModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-lg shadow-xl max-w-2xl w-full max-h-[80vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-2xl font-bold text-gray-900">
+                  Terms & Conditions
+                </h2>
+                <button
+                  onClick={() => setShowTermsModal(false)}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <XMarkIcon className="h-6 w-6" />
+                </button>
+              </div>
+
+              <div className="space-y-6">
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    Privacy and Information
+                  </h3>
+                  <p className="text-gray-700">
+                    Any and all personal information shared between the student
+                    and London Elite Driving will not be shared to any third
+                    party to the best of our ability. The information we gather
+                    will only be used to contact the student.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    Refund Policy
+                  </h3>
+                  <p className="text-gray-700">
+                    Bookings are non-refundable, and can carry additional
+                    charges if cheques are dishonoured. Students must give
+                    24-hour notice to our office or their instructor to
+                    reschedule, otherwise there will be a $45 cancellation fee.
+                  </p>
+                </section>
+
+                <section>
+                  <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                    Terms and Conditions
+                  </h3>
+                  <ul className="list-disc pl-5 text-gray-700 space-y-2">
+                    <li>
+                      Students must obtain their G1 driving license to start
+                      lessons.
+                    </li>
+                    <li>
+                      Students must finish both the online and in-car lessons
+                      within a year, otherwise they cannot be certified and will
+                      have to pay the full amount to restart.
+                    </li>
+                    <li>
+                      Students from out of town must either pay at increased
+                      rates or must meet with instructors in local areas to
+                      accommodate instructors for their time.
+                    </li>
+                    <li>
+                      London Elite Driving does not issue certificates, only the
+                      MTO can distribute certificates. Students may request
+                      their driver's licence history from their local vehicle
+                      licensing office.
+                    </li>
+                    <li>
+                      London Elite Driving has the right to potentially delay or
+                      cancel due to road and/or traffic conditions.
+                    </li>
+                  </ul>
+                </section>
+              </div>
+
+              <div className="mt-8 flex justify-end">
+                <button
+                  onClick={() => setShowTermsModal(false)}
+                  className="px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-700 transition-colors"
+                >
+                  Close
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   );
 };

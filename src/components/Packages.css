@@ -80,6 +80,14 @@
   transition-delay: 0.7s;
 }
 
+.feature-item:nth-child(8) {
+  transition-delay: 0.8s;
+}
+
+.feature-item:nth-child(9) {
+  transition-delay: 0.9s;
+}
+
 /* Hover effect for the feature items */
 .pricing-card-parent:hover .pricing-card {
   transform: rotate3d(1, 1, 0, 20deg);
