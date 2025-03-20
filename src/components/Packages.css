@@ -1,6 +1,6 @@
 .pricing-card-parent {
   perspective: 1000px;
-  padding: 20px;
+  padding: 15px;
 }
 
 .pricing-card {
@@ -35,12 +35,12 @@
 }
 
 .content {
-  padding: 30px;
+  padding: 25px;
   transform: translate3d(0, 0, 26px);
   position: relative;
 }
 
-/* New styles for the feature list items */
+/* Feature list styles */
 .features-list {
   transform-style: preserve-3d;
 }
@@ -49,58 +49,51 @@
   transition: all 0.2s ease-in-out;
   transform: translate3d(0, 0, 0);
   box-shadow: rgba(37, 99, 235, 0) 0px 7px 5px -5px;
+  font-size: 0.95rem;
 }
 
 /* Add transition delays for each feature item */
 .feature-item:nth-child(1) {
   transition-delay: 0.1s;
 }
-
 .feature-item:nth-child(2) {
   transition-delay: 0.2s;
 }
-
 .feature-item:nth-child(3) {
   transition-delay: 0.3s;
 }
-
 .feature-item:nth-child(4) {
   transition-delay: 0.4s;
 }
-
 .feature-item:nth-child(5) {
   transition-delay: 0.5s;
 }
-
 .feature-item:nth-child(6) {
   transition-delay: 0.6s;
 }
-
 .feature-item:nth-child(7) {
   transition-delay: 0.7s;
 }
-
 .feature-item:nth-child(8) {
   transition-delay: 0.8s;
 }
-
 .feature-item:nth-child(9) {
   transition-delay: 0.9s;
 }
 
-/* Hover effect for the feature items */
+/* Hover effect for the pricing card */
 .pricing-card-parent:hover .pricing-card {
-  transform: rotate3d(1, 1, 0, 20deg);
+  transform: rotate3d(1, 1, 0, 15deg);
   box-shadow: rgba(37, 99, 235, 0.2) -5px 20px 10px 0px;
 }
 
 .pricing-card-parent:hover .feature-item {
-  transform: translate3d(0, 0, 50px);
+  transform: translate3d(0, 0, 40px);
   box-shadow: rgba(37, 99, 235, 0.1) -5px 20px 10px 0px;
 }
 
 .card-bottom {
-  padding: 20px 30px;
+  padding: 15px 25px;
   transform-style: preserve-3d;
   position: relative;
   transform: translate3d(0, 0, 26px);
@@ -120,11 +113,37 @@
 }
 
 .pricing-card-parent:hover .book-now-button {
-  transform: translate3d(-1, -10px, 50px); /* Added -10px Y translation */
+  transform: translate3d(-1px, -8px, 40px);
   box-shadow: rgba(5, 71, 17, 0.2) -5px 20px 10px 0px;
 }
 
 .book-now-button:hover {
   background: rgb(37, 99, 235);
   color: white;
+}
+
+/* Service card wrapper styles */
+.service-card-wrapper {
+  perspective: 1000px;
+}
+
+/* Media queries for responsive layout */
+@media (max-width: 1280px) {
+  .pricing-card-parent {
+    padding: 10px;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .feature-item {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .pricing-card-parent {
+    padding: 5px;
+  }
 }

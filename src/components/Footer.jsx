@@ -8,7 +8,6 @@ import {
 } from "@heroicons/react/24/outline";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
   const [showTermsModal, setShowTermsModal] = useState(false);
 
   const businessHours = [
@@ -51,7 +50,14 @@ const Footer = () => {
               here. Professional driving instruction serving London and
               surrounding areas since 2020.
             </p>
-            <div className="flex space-x-4"></div>
+            <div className="flex space-x-4">
+              <button
+                onClick={() => setShowTermsModal(true)}
+                className="text-gray-400 hover:text-white text-sm transition-colors"
+              >
+                View Terms & Conditions
+              </button>
+            </div>
           </div>
 
           {/* Business Hours */}
@@ -111,23 +117,6 @@ const Footer = () => {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Section with Copyright and Terms */}
-        <div className="mt-12 pt-8 border-t border-gray-700">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-gray-400 text-sm">
-              © {currentYear} London Elite Driving Academy. All rights reserved.
-            </p>
-            <div className="mt-4 md:mt-0">
-              <button
-                onClick={() => setShowTermsModal(true)}
-                className="text-gray-400 hover:text-white text-sm transition-colors"
-              >
-                View Terms & Conditions
-              </button>
             </div>
           </div>
         </div>

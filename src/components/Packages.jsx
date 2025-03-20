@@ -17,14 +17,14 @@ const PricingCard = ({ tier, price, features }) => {
         <div className="content flex-grow">
           <div className="title-section">
             <h3 className="text-2xl font-bold text-gray-900">{tier}</h3>
-            <div className="mt-4 flex items-baseline">
-              <span className="text-5xl font-extrabold text-gray-900">
+            <div className="mt-2 flex items-baseline">
+              <span className="text-[45px] font-extrabold text-gray-900">
                 ${price}
               </span>
               <span className="ml-1 text-xl text-gray-500">+HST</span>
             </div>
           </div>
-          <ul className="mt-8 space-y-4 features-list">
+          <ul className="mt-6 space-y-4 features-list">
             {features.map((feature, index) => (
               <li key={index} className="flex items-start feature-item">
                 <CheckIcon className="flex-shrink-0 w-5 h-5 text-emerald-500" />
@@ -203,17 +203,21 @@ const Packages = () => {
             <span className="font-medium">Local Areas:</span> London, Byron,
             Lambeth, Kilworth and Arva
             <br />
-            <span className="font-medium">Out of Town:</span> Ilderton, Komoka,
-            and Delaware (see Terms and Conditions)
+            <span className="font-medium">
+              Out of Town (See Terms and Conditions):
+            </span>{" "}
+            Ilderton, Komoka, and Delaware
           </p>
         </div>
 
-        <div className="mt-12 grid grid-cols-1 md:grid-cols-2 gap-8">
+        {/* Updated grid layout for MTO Certificate Packages */}
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
           {packages.map((pkg, index) => (
             <PricingCard key={index} {...pkg} />
           ))}
         </div>
 
+        {/* Hourly Packages Section with improved layout */}
         <div className="mt-20">
           <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">
             Hourly Packages without Certificate
@@ -221,7 +225,7 @@ const Packages = () => {
           <p className="text-center text-gray-600 mb-8">
             Flexible training options without MTO certification
           </p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {hourlyPackages.map((pkg, index) => (
               <HourlyPackageCard
                 key={index}
@@ -233,6 +237,7 @@ const Packages = () => {
           </div>
         </div>
 
+        {/* Road Test Packages Section with improved layout */}
         <div className="mt-20">
           <h3 className="text-2xl font-bold text-gray-900 text-center mb-2">
             Road Test Packages
@@ -240,7 +245,7 @@ const Packages = () => {
           <p className="text-center text-gray-600 mb-8">
             Practice sessions with road test included
           </p>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {roadTestPackages.map((pkg, index) => (
               <RoadTestPackageCard
                 key={index}
