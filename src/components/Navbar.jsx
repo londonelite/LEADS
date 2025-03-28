@@ -16,6 +16,7 @@ const Navbar = () => {
   const navigation = [
     { name: "Home", href: "/" },
     { name: "Contact Us", href: "/contact" },
+    { name: "Reviews", href: "/reviews" },
     { name: "Book Now", href: "/booking" },
   ];
 
@@ -45,7 +46,6 @@ const Navbar = () => {
               className="-ml-12 h-96 w-auto md:ml-0 md:h-32 lg:h-[600px] lg:-ml-16 object-contain transition-all duration-300"
             />
           </div>
-
           <div className="hidden sm:flex sm:items-center space-x-8">
             {navigation.map((item) =>
               item.name !== "Book Now" ? (
@@ -63,7 +63,6 @@ const Navbar = () => {
               )
             )}
           </div>
-
           <div className="sm:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
@@ -77,7 +76,6 @@ const Navbar = () => {
             </button>
           </div>
         </div>
-
         {isOpen && (
           <div className="sm:hidden">
             <div className="px-2 pt-2 pb-3 space-y-1">
@@ -85,7 +83,7 @@ const Navbar = () => {
                 <Link
                   key={item.name}
                   to={item.href}
-                  className={`block px-3 py-2 rounded-md text-base font-medium
+                  className={`block px-3 py-2 rounded-md text-base font-medium                     
                     ${
                       item.name === "Book Now"
                         ? "text-blue-600 hover:bg-blue-50"

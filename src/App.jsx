@@ -6,6 +6,7 @@ import Contact from "./pages/Contact";
 import Footer from "./components/Footer";
 import Booking from "./components/Booking";
 import ScrollToTop from "./components/ScrollToTop";
+import Reviews from "./components/Reviews";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
             <Route path="/packages" element={<Packages />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/booking" element={<Booking />} />
+            <Route path="/reviews" element={<Reviews />} />
           </Routes>
         </main>
         <Footer />
