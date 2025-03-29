@@ -8,6 +8,7 @@ import {
 } from "react-router-dom";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import AnimatedBookButton from "./AnimatedBookButton";
+import logo from "../images/logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -41,7 +42,7 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex-shrink-0 flex items-center">
             <img
-              src="/src/images/logo.png"
+              src={logo}
               alt="London Elite Driving Academy"
               className="-ml-12 h-96 w-auto md:ml-0 md:h-32 lg:h-[600px] lg:-ml-16 object-contain transition-all duration-300"
             />
