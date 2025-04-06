@@ -243,7 +243,7 @@ const Packages = () => {
             Road Test Packages
           </h3>
           <p className="text-center text-gray-600 mb-8">
-            Practice sessions with road test included
+            Refresher practice sessions prior to a road test
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {roadTestPackages.map((pkg, index) => (
