@@ -182,7 +182,7 @@ const Packages = () => {
   ];
 
   const roadTestPackages = [
-    { title: "1.5 Hours + Road Test", hours: "1.5", price: 140 },
+    { title: "1 Hour + Road Test", hours: "1.5", price: 140 },
     { title: "2 Hours + Road Test", hours: "2", price: 230 },
     { title: "4 Hours + Road Test", hours: "4", price: 320 },
     { title: "6 Hours + Road Test", hours: "6", price: 410 },
@@ -243,7 +243,7 @@ const Packages = () => {
             Road Test Packages
           </h3>
           <p className="text-center text-gray-600 mb-8">
-            Practice sessions with road test included
+            Refresher practice sessions prior to a road test
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {roadTestPackages.map((pkg, index) => (
