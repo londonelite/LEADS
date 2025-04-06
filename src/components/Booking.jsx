@@ -302,7 +302,7 @@ ${formData.message || "No additional notes provided"}`;
 
                   {/* Road Test Packages */}
                   <option value="Road Test (1 Hour)">
-                    Road Test (1.5 Hours - $140 +HST)
+                    Road Test (1 Hour - $140 +HST)
                   </option>
                   <option value="Road Test (2 Hours)">
                     Road Test (2 Hours - $230 +HST)
