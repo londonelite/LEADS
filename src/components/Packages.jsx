@@ -118,7 +118,8 @@ const Packages = () => {
       price: 549.99,
       features: [
         "MTO certified online course",
-        "20 Hours Online Class",
+        "20 Hours Online Class", 
+        "10 Hours of Online Homework",
         "10 Hours in Car Training",
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
@@ -131,7 +132,8 @@ const Packages = () => {
       price: 699.99,
       features: [
         "MTO certified online course",
-        "20 Hours Online Class",
+        "20 Hours Online Class", 
+        "10 Hours of Online Homework",
         "10 Hours in Car Training",
         "1.5 Hours Practice Before Road Test",
         "4 Month Reduction to Obtain your G2 Road Test Faster",
@@ -145,8 +147,9 @@ const Packages = () => {
       price: 799.99,
       features: [
         "MTO certified online course",
-        "Online Course Available",
-        "20 Hours Online Class",
+        "Online Course Available", // Is this needed?
+        "20 Hours Online Class", 
+        "10 Hours of Online Homework",
         "12 Hours in Car Training",
         "2 Hours Practice Before Road Test",
         "4 Month Reduction to Obtain your G2 Road Test Faster",
@@ -160,8 +163,9 @@ const Packages = () => {
       price: 930,
       features: [
         "MTO certified online course",
-        "Online Course Available",
-        "20 Hours Online Class",
+        "Online Course Available", // Is this needed?
+        "20 Hours Online Class", 
+        "10 Hours of Online Homework",
         "15 Hours in Car Training",
         "2 Hours Practice Before Road Test",
         "4 Month Reduction to Obtain your G2 Road Test Faster",

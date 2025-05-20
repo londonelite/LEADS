@@ -42,9 +42,9 @@ const Navbar = () => {
         <div className="flex justify-between h-20">
           <div className="flex-shrink-0 flex items-center">
             <img
-              src={logo}
+              src = {logo}
               alt="London Elite Driving Academy"
-              className="-ml-12 h-96 w-auto md:ml-0 md:h-32 lg:h-[600px] lg:-ml-16 object-contain transition-all duration-300"
+              className="h-16 w-auto object-contain transition-all duration-300"
             />
           </div>
           <div className="hidden sm:flex sm:items-center space-x-8">
