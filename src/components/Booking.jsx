@@ -9,6 +9,7 @@ const Booking = () => {
     name: "",
     email: "",
     phone: "",
+    address: "", 
     preferredDate: "",
     preferredTime: "",
     lessonType: "Package #1",
@@ -97,6 +98,7 @@ const Booking = () => {
 Full Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
+Address: ${formData.address}
 Preferred Date: ${formattedDate}
 Preferred Time: ${formatTime(formData.preferredTime)}
 Package Selected: ${formData.lessonType}
@@ -206,6 +208,24 @@ ${formData.message || "No additional notes provided"}`;
                   id="phone"
                   required
                   value={formData.phone}
+                  onChange={handleChange}
+                  className={inputClassName}
+                />
+              </label>
+            </div>
+
+            <div className="form-group">
+              <label
+                htmlFor="address"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
+              >
+                Address
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  required
+                  value={formData.address}
                   onChange={handleChange}
                   className={inputClassName}
                 />

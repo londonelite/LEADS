@@ -79,6 +79,7 @@ Message:
 ${formData.message}`;
 
     const templateParams = {
+      from_name: formData.name,
       message: formattedMessage,
     };
 
