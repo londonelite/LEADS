@@ -66,9 +66,9 @@ const Booking = () => {
 
   const formatTime = (time) => {
     const times = {
-      morning: "Morning (9AM - 12PM)",
-      afternoon: "Afternoon (12PM - 4PM)",
-      evening: "Evening (4PM - 6PM)",
+      morning: "Morning (8AM - 12PM)",
+      afternoon: "Afternoon (12PM - 5PM)",
+      evening: "Evening (6PM - 9PM)",
     };
     return times[time] || time;
   };
@@ -273,9 +273,9 @@ ${formData.message || "No additional notes provided"}`;
                   className={selectClassName}
                 >
                   <option value="">Select a time</option>
-                  <option value="morning">Morning (9AM - 12PM)</option>
-                  <option value="afternoon">Afternoon (12PM - 4PM)</option>
-                  <option value="evening">Evening (4PM - 6PM)</option>
+                  <option value="morning">Morning (8AM - 12PM)</option>
+                  <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                  <option value="evening">Evening (6PM - 9PM)</option>
                 </select>
               </label>
             </div>

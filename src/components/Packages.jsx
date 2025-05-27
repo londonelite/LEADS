@@ -117,7 +117,7 @@ const Packages = () => {
       tier: "Package #1",
       price: 549.99,
       features: [
-        "MTO certified online course",
+        "MTO Certified Online Course",
         "20 Hours Online Class", 
         "10 Hours of Online Homework",
         "10 Hours in Car Training",
@@ -131,47 +131,45 @@ const Packages = () => {
       tier: "Package #2",
       price: 699.99,
       features: [
-        "MTO certified online course",
+        "MTO Certified Online Course",
         "20 Hours Online Class", 
         "10 Hours of Online Homework",
-        "10 Hours in Car Training",
-        "1.5 Hours Practice Before Road Test",
+        "10 Hours in Car Training", // can I bold this to show difference between packages?
+        "1.5 Hours Practice Before Road Test", // can I bold this to show difference between packages?
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test",
+        "Vehicle Provided for Road Test", // can I bold this to show difference between packages?
       ],
     },
     {
       tier: "Package #3",
       price: 799.99,
       features: [
-        "MTO certified online course",
-        "Online Course Available", // Is this needed?
+        "MTO Certified Online Course",
         "20 Hours Online Class", 
         "10 Hours of Online Homework",
-        "12 Hours in Car Training",
-        "2 Hours Practice Before Road Test",
+        "12 Hours in Car Training", // can I bold this to show difference between packages?
+        "2 Hours Practice Before Road Test", // can I bold this to show difference between packages?
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test",
+        "Vehicle Provided for Road Test", // can I bold this to show difference between packages?
       ],
     },
     {
       tier: "Package #4",
       price: 930,
       features: [
-        "MTO certified online course",
-        "Online Course Available", // Is this needed?
+        "MTO Certified Online Course",
         "20 Hours Online Class", 
         "10 Hours of Online Homework",
-        "15 Hours in Car Training",
-        "2 Hours Practice Before Road Test",
+        "15 Hours in Car Training", // can I bold this to show difference between packages?
+        "2 Hours Practice Before Road Test", // can I bold this to show difference between packages?
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test",
+        "Vehicle Provided for Road Test", // can I bold this to show difference between packages?
       ],
     },
   ];

@@ -103,7 +103,7 @@ ${formData.message}`;
 
   const businessHours = [
     { days: "Monday - Friday", hours: "8:00 AM - 6:00 PM" },
-    { days: "Saturday", hours: "8:00 AM - 3:00 PM" },
+    { days: "Saturday", hours: "8:00 AM - 4:00 PM" },
     { days: "Sunday", hours: "Closed" },
   ];
 
