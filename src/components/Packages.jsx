@@ -21,7 +21,7 @@ const PricingCard = ({ tier, price, features }) => {
               <span className="text-[45px] font-extrabold text-gray-900">
                 ${price}
               </span>
-              <span className="ml-1 text-xl text-gray-500">+HST</span>
+              <span className="text-xl text-gray-500">+HST</span>
             </div>
           </div>
           <ul className="mt-6 space-y-4 features-list">
@@ -213,7 +213,7 @@ const Packages = () => {
         </div>
 
         {/* Updated grid layout for MTO Certificate Packages */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-4">
           {packages.map((pkg, index) => (
             <PricingCard key={index} {...pkg} />
           ))}
