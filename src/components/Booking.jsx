@@ -14,7 +14,7 @@ const Booking = () => {
     preferredTime: "",
     lessonType: "Package #1",
     message: "",
-    paymentOption: "", // <-- add this line
+    paymentOption: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
