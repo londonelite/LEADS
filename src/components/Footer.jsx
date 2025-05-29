@@ -16,7 +16,7 @@ const Footer = () => {
     { day: "Wednesday", hours: "8:00 AM - 6:00 PM" },
     { day: "Thursday", hours: "8:00 AM - 6:00 PM" },
     { day: "Friday", hours: "8:00 AM - 6:00 PM" },
-    { day: "Saturday", hours: "8:00 AM - 3:00 PM" },
+    { day: "Saturday", hours: "8:00 AM - 4:00 PM" },
     { day: "Sunday", hours: "Closed" },
   ];
 

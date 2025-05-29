@@ -28,7 +28,17 @@ const PricingCard = ({ tier, price, features }) => {
             {features.map((feature, index) => (
               <li key={index} className="flex items-start feature-item">
                 <CheckIcon className="flex-shrink-0 w-5 h-5 text-emerald-500" />
-                <span className="ml-3 text-gray-600">{feature}</span>
+                <span className="ml-3 text-gray-600">
+                  {typeof feature === "string" ? (
+                    feature
+                  ) : feature.firstHighlight && feature.secondHighlight ? (
+                    <b><i>{feature.text}</i></b>
+                  ) : feature.firstHighlight ? (
+                    <b>{feature.text}</b>
+                  ) : (
+                    feature.text
+                  )}
+                </span>
               </li>
             ))}
           </ul>
@@ -134,12 +144,12 @@ const Packages = () => {
         "MTO Certified Online Course",
         "20 Hours Online Class", 
         "10 Hours of Online Homework",
-        "10 Hours in Car Training", // can I bold this to show difference between packages?
-        "1.5 Hours Practice Before Road Test", // can I bold this to show difference between packages?
+        "10 Hours in Car Training", 
+        { text: "1.5 Hours Practice Before Road Test", firstHighlight: true },
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test", // can I bold this to show difference between packages?
+        { text: "Vehicle Provided for Road Test", firstHighlight: true }, 
       ],
     },
     {
@@ -149,12 +159,12 @@ const Packages = () => {
         "MTO Certified Online Course",
         "20 Hours Online Class", 
         "10 Hours of Online Homework",
-        "12 Hours in Car Training", // can I bold this to show difference between packages?
-        "2 Hours Practice Before Road Test", // can I bold this to show difference between packages?
+        { text: "12 Hours in Car Training", firstHighlight: true }, 
+        { text: "2 Hours Practice Before Road Test", firstHighlight: true, secondHighlight: true }, 
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test", // can I bold this to show difference between packages?
+        { text: "Vehicle Provided for Road Test", firstHighlight: true }, 
       ],
     },
     {
@@ -164,12 +174,12 @@ const Packages = () => {
         "MTO Certified Online Course",
         "20 Hours Online Class", 
         "10 Hours of Online Homework",
-        "15 Hours in Car Training", // can I bold this to show difference between packages?
-        "2 Hours Practice Before Road Test", // can I bold this to show difference between packages?
+        { text: "15 Hours in Car Training", firstHighlight: true, secondHighlight: true }, 
+        { text: "2 Hours Practice Before Road Test", firstHighlight: true, secondHighlight: true }, 
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test", // can I bold this to show difference between packages?
+        { text: "Vehicle Provided for Road Test", firstHighlight: true }, 
       ],
     },
   ];
