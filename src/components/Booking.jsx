@@ -70,7 +70,7 @@ const Booking = () => {
     const times = {
       morning: "Morning (8AM - 12PM)",
       afternoon: "Afternoon (12PM - 5PM)",
-      evening: "Evening (6PM - 9PM)",
+      evening: "Evening (5PM - 8PM)",
     };
     return times[time] || time;
   };
@@ -283,7 +283,7 @@ ${formData.message || "No additional notes provided"}`;
                   <option value="">Select a time</option>
                   <option value="morning">Morning (8AM - 12PM)</option>
                   <option value="afternoon">Afternoon (12PM - 5PM)</option>
-                  <option value="evening">Evening (6PM - 9PM)</option>
+                  <option value="evening">Evening (5PM - 8PM)</option>
                 </select>
               </label>
             </div>
@@ -365,7 +365,7 @@ ${formData.message || "No additional notes provided"}`;
                 >
                   <option value="">Select a payment option</option>
                   <option value="E-transfer">E-transfer</option>
-                  {isHourlyOrRoadTest && <option value="Cash">Cash</option>}
+                  <option value="Cash">Cash</option>
                 </select>
               </label>
             </div>
