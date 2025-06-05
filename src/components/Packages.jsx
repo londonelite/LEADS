@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import "./Packages.css";
 
 const PricingCard = ({ tier, price, features }) => {
-  const navigate = useNavigate();
 
-  const handleBookNow = () => {
+  const handlePackageBooking  = () => {
+    const navigate = useNavigate();
     navigate(`/booking?package=${encodeURIComponent(tier)}`);
   };
 
@@ -21,20 +21,26 @@ const PricingCard = ({ tier, price, features }) => {
               <span className="text-[45px] font-extrabold text-gray-900">
                 ${price}
               </span>
-              <span className="ml-1 text-xl text-gray-500">+HST</span>
+              <span className="text-xl text-gray-500">+HST</span>
             </div>
           </div>
           <ul className="mt-6 space-y-4 features-list">
             {features.map((feature, index) => (
               <li key={index} className="flex items-start feature-item">
                 <CheckIcon className="flex-shrink-0 w-5 h-5 text-emerald-500" />
-                <span className="ml-3 text-gray-600">{feature}</span>
+                <span className="ml-3 text-gray-600">
+                  {typeof feature === "string" ? (feature) : 
+                    feature.firstHighlight && feature.secondHighlight ? ( <b><i>{feature.text}</i></b> ) : 
+                    feature.firstHighlight ? ( <b>{feature.text}</b> ) : 
+                    (feature.text)
+                  }
+                </span>
               </li>
             ))}
           </ul>
         </div>
         <div className="card-bottom mt-auto pt-8">
-          <button onClick={handleBookNow} className="book-now-button">
+          <button onClick={handlePackageBooking } className="book-now-button">
             Book Now
           </button>
         </div>
@@ -43,7 +49,13 @@ const PricingCard = ({ tier, price, features }) => {
   );
 };
 
-const HourlyPackageCard = ({ hours, price, onClick }) => {
+const HourlyPackageCard = ({ hours, price }) => {
+
+  const handleHourlyBooking = (hours) => {
+    const navigate = useNavigate();
+    navigate(`/booking?hourly=${encodeURIComponent(hours)}`);
+  };
+  
   return (
     <div className="service-card-wrapper perspective-1000">
       <div className="service-card group relative h-full w-full rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-px transition-all duration-500 hover:scale-[1.02] hover:rotate-1">
@@ -59,7 +71,7 @@ const HourlyPackageCard = ({ hours, price, onClick }) => {
               <span className="text-base font-normal text-gray-600">+HST</span>
             </p>
             <button
-              onClick={onClick}
+              onClick={handleHourlyBooking}
               className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
             >
               Book Now
@@ -71,7 +83,13 @@ const HourlyPackageCard = ({ hours, price, onClick }) => {
   );
 };
 
-const RoadTestPackageCard = ({ title, hours, price, onClick }) => {
+const RoadTestPackageCard = ({ title, hours, price }) => {
+
+  const handleRoadTestBooking = (type) => {
+    const navigate = useNavigate();
+    navigate(`/booking?roadtest=${encodeURIComponent(type)}`);
+  };
+  
   return (
     <div className="service-card-wrapper perspective-1000">
       <div className="service-card group relative h-full w-full rounded-xl bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-600 p-px transition-all duration-500 hover:scale-[1.02] hover:rotate-1">
@@ -85,7 +103,7 @@ const RoadTestPackageCard = ({ title, hours, price, onClick }) => {
               <span className="text-base font-normal text-gray-600">+HST</span>
             </p>
             <button
-              onClick={onClick}
+              onClick={handleRoadTestBooking}
               className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
             >
               Book Now
@@ -98,27 +116,15 @@ const RoadTestPackageCard = ({ title, hours, price, onClick }) => {
 };
 
 const Packages = () => {
-  const navigate = useNavigate();
-
-  const handlePackageBooking = (packageType) => {
-    navigate(`/booking?package=${encodeURIComponent(packageType)}`);
-  };
-
-  const handleHourlyBooking = (hours) => {
-    navigate(`/booking?hourly=${encodeURIComponent(hours)}`);
-  };
-
-  const handleRoadTestBooking = (type) => {
-    navigate(`/booking?roadtest=${encodeURIComponent(type)}`);
-  };
 
   const packages = [
     {
       tier: "Package #1",
       price: 549.99,
       features: [
-        "MTO certified online course",
-        "20 Hours Online Class",
+        "MTO Certified Online Course",
+        "20 Hours Online Class", 
+        "10 Hours of Online Homework",
         "10 Hours in Car Training",
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
@@ -130,44 +136,45 @@ const Packages = () => {
       tier: "Package #2",
       price: 699.99,
       features: [
-        "MTO certified online course",
-        "20 Hours Online Class",
-        "10 Hours in Car Training",
-        "1.5 Hours Practice Before Road Test",
+        "MTO Certified Online Course",
+        "20 Hours Online Class", 
+        "10 Hours of Online Homework",
+        "10 Hours in Car Training", 
+        { text: "1.5 Hours Practice Before Road Test", firstHighlight: true },
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test",
+        { text: "Vehicle Provided for Road Test", firstHighlight: true }, 
       ],
     },
     {
       tier: "Package #3",
       price: 799.99,
       features: [
-        "MTO certified online course",
-        "Online Course Available",
-        "20 Hours Online Class",
-        "12 Hours in Car Training",
-        "2 Hours Practice Before Road Test",
+        "MTO Certified Online Course",
+        "20 Hours Online Class", 
+        "10 Hours of Online Homework",
+        { text: "12 Hours in Car Training", firstHighlight: true }, 
+        { text: "2 Hours Practice Before Road Test", firstHighlight: true, secondHighlight: true }, 
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test",
+        { text: "Vehicle Provided for Road Test", firstHighlight: true }, 
       ],
     },
     {
       tier: "Package #4",
       price: 930,
       features: [
-        "MTO certified online course",
-        "Online Course Available",
-        "20 Hours Online Class",
-        "15 Hours in Car Training",
-        "2 Hours Practice Before Road Test",
+        "MTO Certified Online Course",
+        "20 Hours Online Class", 
+        "10 Hours of Online Homework",
+        { text: "15 Hours in Car Training", firstHighlight: true, secondHighlight: true }, 
+        { text: "2 Hours Practice Before Road Test", firstHighlight: true, secondHighlight: true }, 
         "4 Month Reduction to Obtain your G2 Road Test Faster",
         "One on one in vehicle training flexible appointments",
         "Pick up and drop off services in London",
-        "Vehicle Provided for Road Test",
+        { text: "Vehicle Provided for Road Test", firstHighlight: true }, 
       ],
     },
   ];
@@ -181,6 +188,7 @@ const Packages = () => {
     { hours: "10", price: 450 },
   ];
 
+  // What is 1.5 hours???
   const roadTestPackages = [
     { title: "1 Hour + Road Test", hours: "1.5", price: 140 },
     { title: "2 Hours + Road Test", hours: "2", price: 230 },
@@ -211,7 +219,7 @@ const Packages = () => {
         </div>
 
         {/* Updated grid layout for MTO Certificate Packages */}
-        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6">
+        <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-4">
           {packages.map((pkg, index) => (
             <PricingCard key={index} {...pkg} />
           ))}
@@ -227,12 +235,7 @@ const Packages = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
             {hourlyPackages.map((pkg, index) => (
-              <HourlyPackageCard
-                key={index}
-                hours={pkg.hours}
-                price={pkg.price}
-                onClick={() => handleHourlyBooking(pkg.hours)}
-              />
+              <HourlyPackageCard key={index} {...pkg} />
             ))}
           </div>
         </div>
@@ -247,13 +250,7 @@ const Packages = () => {
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {roadTestPackages.map((pkg, index) => (
-              <RoadTestPackageCard
-                key={index}
-                title={pkg.title}
-                hours={pkg.hours}
-                price={pkg.price}
-                onClick={() => handleRoadTestBooking(pkg.hours)}
-              />
+              <RoadTestPackageCard key={index} {...pkg} />
             ))}
           </div>
         </div>

@@ -55,16 +55,49 @@ const Reviews = () => {
   const reviews = [
     {
       text: "The instructor, Palwasha Beedar was very easy to work with and had a great personality. My daughter enjoyed driving with her",
-      author: "Parent",
+      author: "Khalid A.",
     },
     {
       text: "I recently passed my g2 with the help of Palwasha Beedar. She is an amazing instructor and person! She is always so helpful and kind. She cares about her students and provides them with great instructions! I highly recommend her and this school!",
-      author: "Student",
+      author: "Homaira F.",
+    },
+    {
+      text: "I just passed my G2 driving road test with ease. My sincere appreciation to London Elite Driving Academy for the mentorship, encouragement, effort and inspiration that made this possible. You did an amazing job!",
+      author: "Osaretin R. O-A.",
     },
     {
       text: "Had a great experience with my driving instructor she was so helpful and taught me in a very sweet but effective manner. Helped me gain so much confidence in my self and always had my best interest in mind.",
-      author: "Student",
+      author: "Miyah W.",
     },
+    {
+      text: "I had my lesson with London Elite driving school. Palwasha was my instructor, she showed me how to be a defensive driver",
+      author: "Nafisa N.",
+    },
+    {
+      text: "Farid Abbasi is a one of a kind instructor. He takes the initiative to help turn you into a skilled and confident driver. What sets Farid apart from his peers is his focus on encouraging his students, building up their confidence, and ensuring they truly understand how to drive safely with defensive driving techniques. He also provides immediate feedback, pointing out any errors on the road as they happen.\nI passed both my G2 and G tests with Farid as my instructor, and I highly recommend anyone reading this testimonial to choose Farid to help them prepare for their upcoming tests. You’re the best, Farid!",
+      author: "Mohammad A.",
+    },
+    {
+      text: "Huge thanks to Aisha for making me comfortable and focused behind the wheel! A very high quality instructor in london",
+      author: "Nancy L.",
+    },
+    {
+      text: "Highly recommend! Aisha helped me get my G2 and G a few years ago and it was such a great experience! She is so patient and kind, and prices were super reasonable!",
+      author: "Kudrat T.",
+    },
+    {
+      text: "Aisha was the best driving instructor I had. I felt so defeated whenever anyone (professional or close friend) tried teaching me how to drive until I met her. I always recommend her to my family and friends because I’m confident with the results she delivers. She is kind, patient & provides thoughtful and clear feedback. She is determined in helping you achieve your driving goals which is reflected through her creative and thought provoking teaching styles. I’m so thankful for her!! I highly recommend her.",
+      author: "Maria G.",
+    },
+    {
+      text: "I had the pleasure of taking driving lessons with Instructor Farid and Palwasha, and I highly recommend them! Both instructors are incredibly knowledgeable and patient, making the learning process not only effective but also enjoyable. Together, they make a fantastic team. Their professionalism, dedication, and passion for teaching truly stand out. I passed my driving test with flying colors, and I owe a big part of that success to Instructor Farid and Palwasha. If you’re looking for driving instructors who genuinely care about your progress and success, look no further just Elite Driving Academy!👍👍👍",
+      author: "Bakhtyar H.",
+    }, 
+    {
+      text: "A trustworthy and skilled driving school that caters to the individual needs of every student. I would gladly suggest this company to my family and friends.",
+      author: "M. Lugar"
+    }, 
+    // Add more reviews as needed
   ];
 
   const handlePrevReview = () => {

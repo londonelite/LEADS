@@ -9,16 +9,19 @@ const Booking = () => {
     name: "",
     email: "",
     phone: "",
+    address: "", 
     preferredDate: "",
     preferredTime: "",
     lessonType: "Package #1",
     message: "",
+    paymentOption: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
   const [termsAccepted, setTermsAccepted] = useState(false);
   const [showTerms, setShowTerms] = useState(false);
+  const [lastPaymentOption, setLastPaymentOption] = useState("");
 
   useEffect(() => {
     // Get URL parameters
@@ -65,9 +68,9 @@ const Booking = () => {
 
   const formatTime = (time) => {
     const times = {
-      morning: "Morning (9AM - 12PM)",
-      afternoon: "Afternoon (12PM - 4PM)",
-      evening: "Evening (4PM - 6PM)",
+      morning: "Morning (8AM - 12PM)",
+      afternoon: "Afternoon (12PM - 5PM)",
+      evening: "Evening (5PM - 8PM)",
     };
     return times[time] || time;
   };
@@ -97,9 +100,11 @@ const Booking = () => {
 Full Name: ${formData.name}
 Email: ${formData.email}
 Phone: ${formData.phone}
+Address: ${formData.address}
 Preferred Date: ${formattedDate}
 Preferred Time: ${formatTime(formData.preferredTime)}
 Package Selected: ${formData.lessonType}
+Payment Option: ${formData.paymentOption || "Not specified"}
 
 Additional Notes:
 ${formData.message || "No additional notes provided"}`;
@@ -124,12 +129,15 @@ ${formData.message || "No additional notes provided"}`;
         name: "",
         email: "",
         phone: "",
+        address: "",
         preferredDate: "",
         preferredTime: "",
         lessonType: "Package #1",
         message: "",
+        paymentOption: "",
       });
       setTermsAccepted(false);
+      setLastPaymentOption(formData.paymentOption);
     } catch (error) {
       console.error("Error sending email:", error);
       setSubmitStatus("error");
@@ -146,6 +154,8 @@ ${formData.message || "No additional notes provided"}`;
     "mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 px-3 py-2 bg-white";
   const selectClassName =
     "mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 px-3 py-2 bg-white";
+
+  const isHourlyOrRoadTest = formData.lessonType.startsWith("Hourly") || formData.lessonType.startsWith("Road Test");
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -212,6 +222,24 @@ ${formData.message || "No additional notes provided"}`;
               </label>
             </div>
 
+            <div className="form-group">
+              <label
+                htmlFor="address"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
+              >
+                Address
+                <input
+                  type="text"
+                  name="address"
+                  id="address"
+                  required
+                  value={formData.address}
+                  onChange={handleChange}
+                  className={inputClassName}
+                />
+              </label>
+            </div>
+
             <div className="form-group relative">
               <label
                 htmlFor="preferredDate"
@@ -253,9 +281,9 @@ ${formData.message || "No additional notes provided"}`;
                   className={selectClassName}
                 >
                   <option value="">Select a time</option>
-                  <option value="morning">Morning (9AM - 12PM)</option>
-                  <option value="afternoon">Afternoon (12PM - 4PM)</option>
-                  <option value="evening">Evening (4PM - 6PM)</option>
+                  <option value="morning">Morning (8AM - 12PM)</option>
+                  <option value="afternoon">Afternoon (12PM - 5PM)</option>
+                  <option value="evening">Evening (5PM - 8PM)</option>
                 </select>
               </label>
             </div>
@@ -316,6 +344,28 @@ ${formData.message || "No additional notes provided"}`;
                   <option value="Road Test (Out of Town)">
                     Road Test (Out of Town - $300 +HST)
                   </option>
+                </select>
+              </label>
+            </div>
+
+            <div className="form-group">
+              <label
+                htmlFor="paymentOption"
+                className="block text-sm font-medium text-gray-700 mb-1 cursor-pointer"
+              >
+                Payment Option
+                <select
+                  name="paymentOption"
+                  id="paymentOption"
+                  required
+                  value={formData.paymentOption}
+                  onChange={handleChange}
+                  // (e) => setPaymentOption(e.target.value)
+                  className={selectClassName}
+                >
+                  <option value="">Select a payment option</option>
+                  <option value="E-transfer">E-transfer</option>
+                  <option value="Cash">Cash</option>
                 </select>
               </label>
             </div>
@@ -453,10 +503,20 @@ ${formData.message || "No additional notes provided"}`;
             </div>
 
             {submitStatus === "success" && (
-              <p className="mt-4 text-green-600 text-center">
-                Booking request submitted successfully! We'll get back to you
-                soon.
-              </p>
+              <div className="mt-4 text-green-600 text-center">
+                Booking request submitted successfully! We'll get back to you soon.<br /><br />
+                {lastPaymentOption === "E-transfer" && (
+                  <p>
+                    Upon confirmation, please send your e-transfer to <b>londonelitedriving@gmail.com</b>.<br />
+                    Your booking will be confirmed once payment is received.
+                  </p>
+                )}
+                {lastPaymentOption === "Cash" && (
+                  <p>
+                    Upon confirmation, please have the cash ready for your instructor on the day of your lesson.
+                  </p>
+                )}
+              </div>
             )}
             {submitStatus === "error" && (
               <p className="mt-4 text-red-600 text-center">
