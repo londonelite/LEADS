@@ -155,8 +155,6 @@ ${formData.message || "No additional notes provided"}`;
   const selectClassName =
     "mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 px-3 py-2 bg-white";
 
-  const isHourlyOrRoadTest = formData.lessonType.startsWith("Hourly") || formData.lessonType.startsWith("Road Test");
-
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
       <div className="max-w-2xl mx-auto">
@@ -303,10 +301,10 @@ ${formData.message || "No additional notes provided"}`;
                   className={selectClassName}
                 >
                   {/* Certificate Packages */}
-                  <option value="Package #1">Package #1 ($549.99 +HST)</option>
-                  <option value="Package #2">Package #2 ($699.99 +HST)</option>
-                  <option value="Package #3">Package #3 ($799.99 +HST)</option>
-                  <option value="Package #4">Package #4 ($930 +HST)</option>
+                  <option value="Package #1">Package #1 ($539.99 +HST)</option>
+                  <option value="Package #2">Package #2 ($679.99 +HST)</option>
+                  <option value="Package #3">Package #3 ($769.99 +HST)</option>
+                  <option value="Package #4">Package #4 ($910 +HST)</option>
 
                   {/* Hourly Packages */}
                   <option value="Hourly (1 Hour)">
@@ -316,16 +314,16 @@ ${formData.message || "No additional notes provided"}`;
                     Hourly (2 Hours - $90 +HST)
                   </option>
                   <option value="Hourly (4 Hours)">
-                    Hourly (4 Hours - $180 +HST)
+                    Hourly (4 Hours - $160 +HST)
                   </option>
                   <option value="Hourly (6 Hours)">
-                    Hourly (6 Hours - $270 +HST)
+                    Hourly (6 Hours - $260 +HST)
                   </option>
                   <option value="Hourly (8 Hours)">
-                    Hourly (8 Hours - $360 +HST)
+                    Hourly (8 Hours - $350 +HST)
                   </option>
                   <option value="Hourly (10 Hours)">
-                    Hourly (10 Hours - $450 +HST)
+                    Hourly (10 Hours - $440 +HST)
                   </option>
 
                   {/* Road Test Packages */}
@@ -333,7 +331,7 @@ ${formData.message || "No additional notes provided"}`;
                     Road Test (1 Hour - $140 +HST)
                   </option>
                   <option value="Road Test (2 Hours)">
-                    Road Test (2 Hours - $230 +HST)
+                    Road Test (2 Hours - $180 +HST)
                   </option>
                   <option value="Road Test (4 Hours)">
                     Road Test (4 Hours - $320 +HST)
@@ -342,7 +340,7 @@ ${formData.message || "No additional notes provided"}`;
                     Road Test (6 Hours - $410 +HST)
                   </option>
                   <option value="Road Test (Out of Town)">
-                    Road Test (Out of Town - $300 +HST)
+                    Road Test (Out of Town - $280 +HST)
                   </option>
                 </select>
               </label>
