@@ -89,7 +89,7 @@ const HourlyPackageCard = ({ hours, price, oldPrice }) => {
               </div>
             </div>
             <button
-              onClick={handleHourlyBooking}
+                onClick={() => handleHourlyBooking(hours)}
               className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
             >
               Book Now
@@ -130,7 +130,7 @@ const RoadTestPackageCard = ({ title, hours, price, oldPrice }) => {
               </div>
             </div>
             <button
-              onClick={handleRoadTestBooking}
+              onClick={() => handleRoadTestBooking(hours)}
               className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
             >
               Book Now

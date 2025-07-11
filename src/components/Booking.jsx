@@ -38,9 +38,7 @@ const Booking = () => {
     } else if (hourlyFromUrl) {
       setFormData((prev) => ({
         ...prev,
-        lessonType: `Hourly (${hourlyFromUrl} Hour${
-          hourlyFromUrl === "1" ? "" : "s"
-        })`,
+        lessonType: `Hourly (${hourlyFromUrl} Hour${hourlyFromUrl === "1" ? "" : "s"})`,
       }));
     } else if (roadTestFromUrl) {
       // Handle different road test packages
@@ -463,6 +461,11 @@ ${formData.message || "No additional notes provided"}`;
                         Students from out of town must either pay at increased
                         rates or must meet with instructors in local areas to
                         accommodate instructors for their time.
+                      </li>
+                      <li>
+                        Students may not schedule more than 2 hours of practice in a single day. 
+                        Packages with more than 2 hours will be spread out over multiple days 
+                        according to both student and instructor availability.
                       </li>
                       <li>
                         London Elite Driving does not issue certificates, only
