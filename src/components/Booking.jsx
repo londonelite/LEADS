@@ -453,9 +453,9 @@ ${formData.message || "No additional notes provided"}`;
                         lessons.
                       </li>
                       <li>
-                        Students must finish both the online and in-car lessons
-                        within a year, otherwise they cannot be certified and
-                        will have to pay the full amount to restart.
+                        Students purchasing MTO Packages must finish both 
+                        the in-car and online lessons within a year, otherwise they 
+                        cannot be certified and will have to pay the full amount to restart.
                       </li>
                       <li>
                         Students from out of town must either pay at increased
