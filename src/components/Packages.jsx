@@ -3,10 +3,10 @@ import { CheckIcon, MapPinIcon, ClockIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import "./Packages.css";
 
-const PricingCard = ({ tier, price, features }) => {
+const PricingCard = ({ tier, price, oldPrice, features }) => {
+  const navigate = useNavigate();
 
   const handlePackageBooking  = () => {
-    const navigate = useNavigate();
     navigate(`/booking?package=${encodeURIComponent(tier)}`);
   };
 
@@ -17,12 +17,21 @@ const PricingCard = ({ tier, price, features }) => {
         <div className="content flex-grow">
           <div className="title-section">
             <h3 className="text-2xl font-bold text-gray-900">{tier}</h3>
-            <div className="mt-2 flex items-baseline">
-              <span className="text-[45px] font-extrabold text-gray-900">
-                ${price}
-              </span>
-              <span className="text-xl text-gray-500">+HST</span>
-            </div>
+              <div className="mt-2 flex flex-col">
+                <div className="flex items-baseline">
+                  <span className="text-[45px] font-extrabold text-gray-900">
+                    ${price}
+                  </span>
+                  <span className="text-xl text-gray-500">+HST</span>
+                </div>
+                {oldPrice && (
+                <div className="mt-1">
+                  <span className="text-base text-orange-600 line-through">
+                    Was ${oldPrice} +HST
+                  </span>
+                </div>
+                )}
+              </div>
           </div>
           <ul className="mt-6 space-y-4 features-list">
             {features.map((feature, index) => (
@@ -49,10 +58,10 @@ const PricingCard = ({ tier, price, features }) => {
   );
 };
 
-const HourlyPackageCard = ({ hours, price }) => {
+const HourlyPackageCard = ({ hours, price, oldPrice }) => {
+  const navigate = useNavigate();
 
   const handleHourlyBooking = (hours) => {
-    const navigate = useNavigate();
     navigate(`/booking?hourly=${encodeURIComponent(hours)}`);
   };
   
@@ -66,12 +75,21 @@ const HourlyPackageCard = ({ hours, price }) => {
             <h4 className="mt-4 text-xl font-bold text-gray-900">
               {hours} {parseInt(hours) === 1 ? "Hour" : "Hours"}
             </h4>
-            <p className="mt-2 text-2xl font-semibold text-gray-900">
-              ${price}{" "}
-              <span className="text-base font-normal text-gray-600">+HST</span>
-            </p>
+            <div className="space-y-1 mt-2">
+              <p className="text-2xl font-semibold text-gray-900">
+                ${price}
+                <span className="text-base font-normal text-gray-600 ml-1">+HST</span>
+              </p>
+              <div className="h-6 flex justify-center items-center">
+              {oldPrice && (
+                <p className="text-base text-orange-600 line-through">
+                  Was ${oldPrice}
+                </p>
+              )}
+              </div>
+            </div>
             <button
-              onClick={handleHourlyBooking}
+                onClick={() => handleHourlyBooking(hours)}
               className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
             >
               Book Now
@@ -83,10 +101,10 @@ const HourlyPackageCard = ({ hours, price }) => {
   );
 };
 
-const RoadTestPackageCard = ({ title, hours, price }) => {
+const RoadTestPackageCard = ({ title, hours, price, oldPrice }) => {
+  const navigate = useNavigate();
 
   const handleRoadTestBooking = (type) => {
-    const navigate = useNavigate();
     navigate(`/booking?roadtest=${encodeURIComponent(type)}`);
   };
   
@@ -98,12 +116,21 @@ const RoadTestPackageCard = ({ title, hours, price }) => {
           <div className="flex flex-col items-center text-center">
             <MapPinIcon className="h-12 w-12 text-blue-600" />
             <h4 className="mt-4 text-xl font-bold text-gray-900">{title}</h4>
-            <p className="mt-2 text-2xl font-semibold text-gray-900">
-              ${price}{" "}
-              <span className="text-base font-normal text-gray-600">+HST</span>
-            </p>
+            <div className="space-y-1 mt-2">
+              <p className="text-2xl font-semibold text-gray-900">
+                ${price}
+                <span className="text-base font-normal text-gray-600 ml-1">+HST</span>
+              </p>
+              <div className="h-6 flex justify-center items-center"> 
+                {oldPrice && (
+                  <p className="text-base text-orange-600 line-through">
+                    Was ${oldPrice}
+                  </p>
+                )}
+              </div>
+            </div>
             <button
-              onClick={handleRoadTestBooking}
+              onClick={() => handleRoadTestBooking(hours)}
               className="mt-6 w-full rounded-lg bg-gradient-to-r from-blue-500 to-blue-600 px-6 py-3 text-white font-semibold shadow-lg transition-all duration-300 hover:shadow-blue-500/25 hover:-translate-y-0.5"
             >
               Book Now
@@ -116,11 +143,11 @@ const RoadTestPackageCard = ({ title, hours, price }) => {
 };
 
 const Packages = () => {
-
   const packages = [
     {
       tier: "Package #1",
-      price: 549.99,
+      price: 539.99,
+      oldPrice: 549.99,
       features: [
         "MTO Certified Online Course",
         "20 Hours Online Class", 
@@ -134,7 +161,8 @@ const Packages = () => {
     },
     {
       tier: "Package #2",
-      price: 699.99,
+      price: 679.99,
+      oldPrice: 699.99,
       features: [
         "MTO Certified Online Course",
         "20 Hours Online Class", 
@@ -149,7 +177,8 @@ const Packages = () => {
     },
     {
       tier: "Package #3",
-      price: 799.99,
+      price: 769.99,
+      oldPrice: 799.99,
       features: [
         "MTO Certified Online Course",
         "20 Hours Online Class", 
@@ -164,7 +193,8 @@ const Packages = () => {
     },
     {
       tier: "Package #4",
-      price: 930,
+      price: 910,
+      oldPrice: 930,
       features: [
         "MTO Certified Online Course",
         "20 Hours Online Class", 
@@ -182,19 +212,19 @@ const Packages = () => {
   const hourlyPackages = [
     { hours: "1", price: 45 },
     { hours: "2", price: 90 },
-    { hours: "4", price: 180 },
-    { hours: "6", price: 270 },
-    { hours: "8", price: 360 },
-    { hours: "10", price: 450 },
+    { hours: "4", price: 160, oldPrice: 180 },
+    { hours: "6", price: 260, oldPrice: 270 },
+    { hours: "8", price: 350, oldPrice: 360 },
+    { hours: "10", price: 440, oldPrice: 450 },
   ];
 
   // What is 1.5 hours???
   const roadTestPackages = [
     { title: "1 Hour + Road Test", hours: "1.5", price: 140 },
-    { title: "2 Hours + Road Test", hours: "2", price: 230 },
+    { title: "2 Hours + Road Test", hours: "2", price: 180, oldPrice: 230 },
     { title: "4 Hours + Road Test", hours: "4", price: 320 },
     { title: "6 Hours + Road Test", hours: "6", price: 410 },
-    { title: "Out of Town", hours: "Out of Town", price: 300 },
+    { title: "Out of Town", hours: "Out of Town", price: 280, oldPrice: 300 },
   ];
 
   return (

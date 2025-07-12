@@ -38,9 +38,7 @@ const Booking = () => {
     } else if (hourlyFromUrl) {
       setFormData((prev) => ({
         ...prev,
-        lessonType: `Hourly (${hourlyFromUrl} Hour${
-          hourlyFromUrl === "1" ? "" : "s"
-        })`,
+        lessonType: `Hourly (${hourlyFromUrl} Hour${hourlyFromUrl === "1" ? "" : "s"})`,
       }));
     } else if (roadTestFromUrl) {
       // Handle different road test packages
@@ -154,8 +152,6 @@ ${formData.message || "No additional notes provided"}`;
     "mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 px-3 py-2 bg-white";
   const selectClassName =
     "mt-1 block w-full rounded-md border-2 border-gray-300 shadow-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-500 px-3 py-2 bg-white";
-
-  const isHourlyOrRoadTest = formData.lessonType.startsWith("Hourly") || formData.lessonType.startsWith("Road Test");
 
   return (
     <div className="min-h-screen bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
@@ -303,10 +299,10 @@ ${formData.message || "No additional notes provided"}`;
                   className={selectClassName}
                 >
                   {/* Certificate Packages */}
-                  <option value="Package #1">Package #1 ($549.99 +HST)</option>
-                  <option value="Package #2">Package #2 ($699.99 +HST)</option>
-                  <option value="Package #3">Package #3 ($799.99 +HST)</option>
-                  <option value="Package #4">Package #4 ($930 +HST)</option>
+                  <option value="Package #1">Package #1 ($539.99 +HST)</option>
+                  <option value="Package #2">Package #2 ($679.99 +HST)</option>
+                  <option value="Package #3">Package #3 ($769.99 +HST)</option>
+                  <option value="Package #4">Package #4 ($910 +HST)</option>
 
                   {/* Hourly Packages */}
                   <option value="Hourly (1 Hour)">
@@ -316,16 +312,16 @@ ${formData.message || "No additional notes provided"}`;
                     Hourly (2 Hours - $90 +HST)
                   </option>
                   <option value="Hourly (4 Hours)">
-                    Hourly (4 Hours - $180 +HST)
+                    Hourly (4 Hours - $160 +HST)
                   </option>
                   <option value="Hourly (6 Hours)">
-                    Hourly (6 Hours - $270 +HST)
+                    Hourly (6 Hours - $260 +HST)
                   </option>
                   <option value="Hourly (8 Hours)">
-                    Hourly (8 Hours - $360 +HST)
+                    Hourly (8 Hours - $350 +HST)
                   </option>
                   <option value="Hourly (10 Hours)">
-                    Hourly (10 Hours - $450 +HST)
+                    Hourly (10 Hours - $440 +HST)
                   </option>
 
                   {/* Road Test Packages */}
@@ -333,7 +329,7 @@ ${formData.message || "No additional notes provided"}`;
                     Road Test (1 Hour - $140 +HST)
                   </option>
                   <option value="Road Test (2 Hours)">
-                    Road Test (2 Hours - $230 +HST)
+                    Road Test (2 Hours - $180 +HST)
                   </option>
                   <option value="Road Test (4 Hours)">
                     Road Test (4 Hours - $320 +HST)
@@ -342,7 +338,7 @@ ${formData.message || "No additional notes provided"}`;
                     Road Test (6 Hours - $410 +HST)
                   </option>
                   <option value="Road Test (Out of Town)">
-                    Road Test (Out of Town - $300 +HST)
+                    Road Test (Out of Town - $280 +HST)
                   </option>
                 </select>
               </label>
@@ -457,14 +453,19 @@ ${formData.message || "No additional notes provided"}`;
                         lessons.
                       </li>
                       <li>
-                        Students must finish both the online and in-car lessons
-                        within a year, otherwise they cannot be certified and
-                        will have to pay the full amount to restart.
+                        Students purchasing MTO Packages must finish both 
+                        the in-car and online lessons within a year, otherwise they 
+                        cannot be certified and will have to pay the full amount to restart.
                       </li>
                       <li>
                         Students from out of town must either pay at increased
                         rates or must meet with instructors in local areas to
                         accommodate instructors for their time.
+                      </li>
+                      <li>
+                        Students may not schedule more than 2 hours of practice in a single day. 
+                        Packages with more than 2 hours will be spread out over multiple days 
+                        according to both student and instructor availability.
                       </li>
                       <li>
                         London Elite Driving does not issue certificates, only
