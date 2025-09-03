@@ -23,14 +23,7 @@ const PricingCard = ({ tier, price, oldPrice, features }) => {
                     ${price}
                   </span>
                   <span className="text-xl text-gray-500">+HST</span>
-                </div>
-                {oldPrice && (
-                <div className="mt-1">
-                  <span className="text-base text-orange-600 line-through">
-                    Was ${oldPrice} +HST
-                  </span>
-                </div>
-                )}
+                </div>      
               </div>
           </div>
           <ul className="mt-6 space-y-4 features-list">
@@ -80,13 +73,6 @@ const HourlyPackageCard = ({ hours, price, oldPrice }) => {
                 ${price}
                 <span className="text-base font-normal text-gray-600 ml-1">+HST</span>
               </p>
-              <div className="h-6 flex justify-center items-center">
-              {oldPrice && (
-                <p className="text-base text-orange-600 line-through">
-                  Was ${oldPrice}
-                </p>
-              )}
-              </div>
             </div>
             <button
                 onClick={() => handleHourlyBooking(hours)}
@@ -121,13 +107,6 @@ const RoadTestPackageCard = ({ title, hours, price, oldPrice }) => {
                 ${price}
                 <span className="text-base font-normal text-gray-600 ml-1">+HST</span>
               </p>
-              <div className="h-6 flex justify-center items-center"> 
-                {oldPrice && (
-                  <p className="text-base text-orange-600 line-through">
-                    Was ${oldPrice}
-                  </p>
-                )}
-              </div>
             </div>
             <button
               onClick={() => handleRoadTestBooking(hours)}
@@ -146,8 +125,7 @@ const Packages = () => {
   const packages = [
     {
       tier: "Package #1",
-      price: 539.99,
-      oldPrice: 549.99,
+      price: 549.99,
       features: [
         "MTO Certified Online Course",
         "20 Hours Online Class", 
@@ -161,8 +139,7 @@ const Packages = () => {
     },
     {
       tier: "Package #2",
-      price: 679.99,
-      oldPrice: 699.99,
+      price: 699.99,
       features: [
         "MTO Certified Online Course",
         "20 Hours Online Class", 
@@ -177,8 +154,7 @@ const Packages = () => {
     },
     {
       tier: "Package #3",
-      price: 769.99,
-      oldPrice: 799.99,
+      price: 799.99,
       features: [
         "MTO Certified Online Course",
         "20 Hours Online Class", 
@@ -193,8 +169,7 @@ const Packages = () => {
     },
     {
       tier: "Package #4",
-      price: 910,
-      oldPrice: 930,
+      price: 930,
       features: [
         "MTO Certified Online Course",
         "20 Hours Online Class", 
@@ -212,19 +187,19 @@ const Packages = () => {
   const hourlyPackages = [
     { hours: "1", price: 45 },
     { hours: "2", price: 90 },
-    { hours: "4", price: 160, oldPrice: 180 },
-    { hours: "6", price: 260, oldPrice: 270 },
-    { hours: "8", price: 350, oldPrice: 360 },
-    { hours: "10", price: 440, oldPrice: 450 },
+    { hours: "4", price: 180 },
+    { hours: "6", price: 270 },
+    { hours: "8", price: 360 },
+    { hours: "10", price: 450 },
   ];
 
   // What is 1.5 hours???
   const roadTestPackages = [
     { title: "1 Hour + Road Test", hours: "1.5", price: 140 },
-    { title: "2 Hours + Road Test", hours: "2", price: 180, oldPrice: 230 },
+    { title: "2 Hours + Road Test", hours: "2", price: 230 },
     { title: "4 Hours + Road Test", hours: "4", price: 320 },
     { title: "6 Hours + Road Test", hours: "6", price: 410 },
-    { title: "Out of Town", hours: "Out of Town", price: 280, oldPrice: 300 },
+    { title: "Out of Town", hours: "Out of Town", price: 300 },
   ];
 
   return (

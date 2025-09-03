@@ -169,8 +169,8 @@ ${formData.message}`;
             <ContactCard title="Payment Information" icon={Mail}>
               <p className="rounded-lg p-2 text-gray-700">
                 We accept e-transfer payments for your convenience. Payment
-                details will be provided upon booking confirmation. Full payment
-                is required to secure your booking.
+                details will be provided upon booking confirmation. Please 
+                note that payment is required to secure your booking.
               </p>
             </ContactCard>
           </div>
