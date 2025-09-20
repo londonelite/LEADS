@@ -196,7 +196,7 @@ const Packages = () => {
   // What is 1.5 hours???
   const roadTestPackages = [
     { title: "1 Hour + Road Test", hours: "1.5", price: 140 },
-    { title: "2 Hours + Road Test", hours: "2", price: 230 },
+    { title: "2 Hours + Road Test", hours: "2", price: 180 },
     { title: "4 Hours + Road Test", hours: "4", price: 320 },
     { title: "6 Hours + Road Test", hours: "6", price: 410 },
     { title: "Out of Town", hours: "Out of Town", price: 300 },
