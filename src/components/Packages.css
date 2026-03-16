@@ -148,6 +148,8 @@
   }
 }
 
+
+
 /* Spring sale banner styles */
 .spring-banner {
   position: relative;
@@ -200,10 +202,6 @@
     }
   }
 }
-
-
-
-
 /* Medium Screens: */
 @media (min-width: 1024px) {
   .spring-banner {

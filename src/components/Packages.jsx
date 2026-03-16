@@ -218,7 +218,7 @@ const Packages = () => {
 
   return (
     <div className="py-16 bg-gray-50" id="packages">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
             MTO Certificate Packages
