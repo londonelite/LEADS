@@ -23,7 +23,14 @@ const PricingCard = ({ tier, price, oldPrice, features }) => {
                     ${price}
                   </span>
                   <span className="text-xl text-gray-500">+HST</span>
-                </div>      
+                </div>
+                {oldPrice && (
+                <div className="mt-1">
+                  <span className="text-base text-emerald-500 line-through">
+                    Was ${oldPrice} +HST
+                  </span>
+                </div>
+                )}
               </div>
           </div>
           <ul className="mt-6 space-y-4 features-list">
@@ -202,9 +209,16 @@ const Packages = () => {
     { title: "Out of Town", hours: "Out of Town", price: 300 },
   ];
 
+  // Function to add discounts to any future packages
+  const applyDiscount = (price) => {
+    const discountAmount = 50; // Adjust discount value as needed
+    const discounted = Number((price - 50).toFixed(2));
+    return discounted >= 0 ? discounted : 0;
+  };
+
   return (
     <div className="py-16 bg-gray-50" id="packages">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center">
           <h2 className="text-3xl font-bold text-gray-900 sm:text-4xl">
             MTO Certificate Packages
@@ -223,11 +237,19 @@ const Packages = () => {
           </p>
         </div>
 
+        {/* Spring Sale Rolling Banner (take down when sale is done) */}
+        <div className="spring-banner" role="status" aria-live="polite">
+          <div className="spring-banner-inner">Spring Sale! $50 off all MTO Packages! Only valid for a limited time!</div>
+        </div>
+
         {/* Updated grid layout for MTO Certificate Packages */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-4">
-          {packages.map((pkg, index) => (
-            <PricingCard key={index} {...pkg} />
-          ))}
+          {packages.map((pkg, index) => {
+            const discount = applyDiscount(pkg.price);
+            return (
+              <PricingCard key={index} {...pkg} oldPrice={pkg.price} price={discount} />
+            );
+          })}
         </div>
 
         {/* Hourly Packages Section with improved layout */}

@@ -147,3 +147,82 @@
     padding: 5px;
   }
 }
+
+
+
+/* Spring sale banner styles */
+.spring-banner {
+  position: relative;
+  background: #7ee7a6; /* spring green */
+  color: #000; /* black text */
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  overflow: hidden;
+  width: 100%;
+  margin: 18px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spring-banner-inner {
+  display: inline-block;
+  white-space: nowrap;
+  font-weight: 700;
+  padding-left: 190%; /* start off to the right */
+  animation: spring-scroll 10s linear infinite;
+}
+
+@keyframes spring-scroll {
+  0% { transform: translateX(0%); }
+  50% { transform: translateX(-50%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Responsive adjustments */
+/* Reduced motion for accessibility*/
+@media (prefers-reduced-motion: reduce) {
+  .spring-banner-inner { animation: none; padding-left: 0; }
+}
+/* Smaller Screens*/
+@media (max-width: 640px) {
+  .spring-banner { margin: 12px 0; padding: 10px; border-radius: 8px; }
+  .spring-banner-inner { 
+    padding-left: 0; /* remove the guessed offset */
+    animation: spring-scroll-mobile 12s linear infinite;
+  }
+
+  @keyframes spring-scroll-mobile {
+    0% {
+      transform: translateX(110%); /* start fully off-screen to the right */
+    }
+    100% {
+      transform: translateX(-110%); /* end fully off-screen to the left */
+    }
+  }
+}
+/* Medium Screens: */
+@media (min-width: 1024px) {
+  .spring-banner {
+    padding: 14px 20px;
+    margin: 24px 0;
+    border-radius: 14px;
+  }
+  .spring-banner-inner {
+    font-size: 1.125rem;
+    padding-left: 165%;
+    animation-duration: 10s;
+  }
+}
+/* Larger Screens */
+@media (min-width: 1536px) {
+  .spring-banner {
+    padding: 18px 28px;
+    margin: 30px 0;
+  }
+  .spring-banner-inner {
+    font-size: 1.25rem;
+    animation-duration: 12s;
+  }
+}
