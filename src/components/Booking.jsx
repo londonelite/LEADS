@@ -298,11 +298,11 @@ ${formData.message || "No additional notes provided"}`;
                   onChange={handleChange}
                   className={selectClassName}
                 >
-                  {/* Certificate Packages */}
-                  <option value="Package #1">Package #1 ($549.99 +HST)</option>
-                  <option value="Package #2">Package #2 ($699.99 +HST)</option>
-                  <option value="Package #3">Package #3 ($799.99 +HST)</option>
-                  <option value="Package #4">Package #4 ($930 +HST)</option>
+                  {/* Certificate Packages (Spring Sale: $50 off all MTO Packages) */}
+                  <option value="Package #1">Package #1 ($499.99 +HST)</option>
+                  <option value="Package #2">Package #2 ($649.99 +HST)</option>
+                  <option value="Package #3">Package #3 ($749.99 +HST)</option>
+                  <option value="Package #4">Package #4 ($880 +HST)</option>
 
                   {/* Hourly Packages */}
                   <option value="Hourly (1 Hour)">

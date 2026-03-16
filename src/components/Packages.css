@@ -147,3 +147,43 @@
     padding: 5px;
   }
 }
+
+/* Spring sale banner styles */
+.spring-banner {
+  position: absolute;
+  top: -12px;
+  right: 0;
+  background: #7ee7a6; /* spring green */
+  color: #000; /* black text */
+  border-radius: 999px;
+  padding: 6px 12px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+  overflow: hidden;
+  min-width: 220px;
+  max-width: 60%;
+  z-index: 30;
+  display: inline-block;
+}
+
+.spring-banner-inner {
+  display: inline-block;
+  white-space: nowrap;
+  padding-right: 30px;
+  font-weight: 700;
+  animation: spring-scroll 8s linear infinite;
+}
+
+@keyframes spring-scroll {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+/* Reduce motion on small screens and for users who prefer reduced motion */
+@media (max-width: 640px) {
+  .spring-banner { top: 8px; right: 8px; min-width: 160px; max-width: 45%; }
+  .spring-banner-inner { animation-duration: 12s; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spring-banner-inner { animation: none; }
+}
