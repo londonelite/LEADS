@@ -212,7 +212,7 @@ const Packages = () => {
   // Function to add discounts to any future packages
   const applyDiscount = (price) => {
     const discountAmount = 50; // Adjust discount value as needed
-    const discounted = Number((price - 50).toFixed(2));
+    const discounted = Number((price - discountAmount).toFixed(2));
     return discounted >= 0 ? discounted : 0;
   };
 
@@ -237,17 +237,11 @@ const Packages = () => {
           </p>
         </div>
 
-        {/* Spring Sale Rolling Banner (take down when sale is done) */}
-        <div className="spring-banner" role="status" aria-live="polite">
-          <div className="spring-banner-inner">Spring Sale! $50 off all MTO Packages! Only valid for a limited time!</div>
-        </div>
-
         {/* Updated grid layout for MTO Certificate Packages */}
         <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-6 xl:gap-4">
           {packages.map((pkg, index) => {
-            const discount = applyDiscount(pkg.price);
             return (
-              <PricingCard key={index} {...pkg} oldPrice={pkg.price} price={discount} />
+              <PricingCard key={index} {...pkg} price={pkg.price} />
             );
           })}
         </div>
